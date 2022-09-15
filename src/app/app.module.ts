@@ -10,6 +10,11 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from "@angular/material/card";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
+import { MatInputModule } from "@angular/material/input";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { AppRoutingModule } from './app-routing.module';
 
@@ -21,12 +26,10 @@ import { SidenavComponent } from './componentes/sidenav/sidenav.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddOrEditComponent } from './componentes/produtos/add-or-edit/add-or-edit.component';
 import { DeleteComponent } from './componentes/produtos/delete/delete.component';
-import {MainComponent} from "./componentes/main/main.component";
-import {MatCardModule} from "@angular/material/card";
-import {MatTabsModule} from "@angular/material/tabs";
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatNativeDateModule} from "@angular/material/core";
-import {MatInputModule} from "@angular/material/input";
+import { MainComponent } from './componentes/main/main.component';
+import { EmpresasComponent } from './componentes/empresas/empresas.component';
+import { CompanyDeleteComponent } from './componentes/empresas/company-delete/company-delete.component';
+import { CompanyAddOrEditComponent } from './componentes/empresas/company-add-or-edit/company-add-or-edit.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import {MatInputModule} from "@angular/material/input";
     AddOrEditComponent,
     DeleteComponent,
     MainComponent,
+    EmpresasComponent,
+    CompanyDeleteComponent,
+    CompanyAddOrEditComponent,
   ],
   imports: [
     BrowserModule,

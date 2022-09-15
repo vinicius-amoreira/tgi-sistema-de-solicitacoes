@@ -1,6 +1,6 @@
 
 table {
-  width: 50vw;
+  width: 100%;
 }
 
 table th, td {
@@ -14,10 +14,10 @@ table th, td {
   box-shadow: 0 4px 7px 1px rgba(0,0,0,0.3);
 }
 
-.align-table {
-
+.content-table {
+  max-width: 100%;
+  padding: 5vh 5vw 10vh 5vw;
 }
 
-.container {
-
+.content {
 }

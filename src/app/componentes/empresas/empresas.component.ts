@@ -1,25 +1,24 @@
-import { Component, OnInit,  ViewChild } from '@angular/core';
-import { MatTable } from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Produtos } from 'src/app/models/produtos.model';
-import { AddOrEditComponent } from './add-or-edit/add-or-edit.component';
-import { DeleteComponent } from './delete/delete.component';
+import { MatTable } from '@angular/material/table';
+import { Empresas } from 'src/app/models/empresas.model';
 
-const ELEMENT_DATA: Produtos[] = [
-  {id: 1, name: 'teste', entry: 'teste', exit: 'teste'},
-  {id: 2, name: 'teste', entry: 'teste', exit: 'teste'},
-  {id: 3, name: 'teste', entry: 'teste', exit: 'teste'},
-  {id: 4, name: 'teste', entry: 'teste', exit: 'teste'},
+const ELEMENT_DATA: Empresas[] = [
+  {id: 1, companyName: 'teste', cnpj: 40028922},
+  {id: 2, companyName: 'teste', cnpj: 40028922},
+  {id: 3, companyName: 'teste', cnpj: 40028922},
+  {id: 4, companyName: 'teste', cnpj: 40028922},
 ];
+
 @Component({
-  selector: 'app-produtos',
-  templateUrl: './produtos.component.html',
-  styleUrls: ['./produtos.component.css'],
+  selector: 'app-empresas',
+  templateUrl: './empresas.component.html',
+  styleUrls: ['./empresas.component.css']
 })
-export class ProdutosComponent implements OnInit {
+export class EmpresasComponent implements OnInit {
   @ViewChild(MatTable)
   table!: MatTable<any>
-  displayedColumns: string[] = ['id', 'nome', 'entrada', 'saida', 'acoes'];
+  displayedColumns: string[] = ['id', 'nome', 'cnpj', 'acoes'];
   dataSource: any[]
 
   constructor(
@@ -36,21 +35,19 @@ export class ProdutosComponent implements OnInit {
       ngOnInit(): void {
   }
 
-  addProduct(element: Produtos | null): void {
-    const dialogRef = this.dialog.open(AddOrEditComponent, {
-      width: '70%',
-      data: element === null ? {
-        id: '',
-        name: '',
-        entry: '',
-        exit: '',
-      } :  {
-        id: element.id,
-        name: element.name,
-        entry: element.entry,
-        exit: element.exit,
-      }
-    });
+  addCompany(element: Empresas | null): void {
+    // const dialogRef = this.dialog.open(AddOrEditComponent, {
+    //   width: '70%',
+    //   data: element === null ? {
+    //     id: '',
+    //     companyName: '',
+    //     cnpj: ''
+    //   } :  {
+    //     id: element.id,
+    //     companyName: element.companyName,
+    //     cnpj: element.cnpj
+    //   }
+    // });
 
     // dialogRef.afterClosed().subscribe(result => {
     //   if (result !== undefined) {
@@ -72,14 +69,14 @@ export class ProdutosComponent implements OnInit {
     // });
   }
 
-  editProduct(element: Produtos): void {
-    this.addProduct(element);
+  editCompany(element: Empresas): void {
+    this.addCompany(element);
   }
 
-  deleteProduct(element: Produtos): void {
-    const dialogRef = this.dialog.open(DeleteComponent, {
-      width: '70%',
-    });
+  deleteCompany(element: Empresas): void {
+    // const dialogRef = this.dialog.open(DeleteComponent, {
+    //   width: '70%',
+    // });
 
     // dialogRef.afterClosed().subscribe(result => {
     //   if (result !== undefined) {
