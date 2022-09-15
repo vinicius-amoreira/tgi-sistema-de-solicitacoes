@@ -9,7 +9,7 @@ export class DashboardComponent implements OnInit {
   single: any[] = [];
   multi: any[] = [];
 
-  view: [number, number] = [700, 400]
+  view: [number, number] = [800, 500];
 
   // options
   showXAxis = true;
@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onSelect(event: any) {
-    console.log(event)
+    console.log(event);
   }
 
 }
