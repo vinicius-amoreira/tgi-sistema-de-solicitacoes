@@ -27,13 +27,13 @@ const routes: Routes = [
         path: 'historico',
         component: HistoricoComponent,
       },
+      {
+        path: '**',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+      }
     ]
   },
-  {
-    path: '**',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({
