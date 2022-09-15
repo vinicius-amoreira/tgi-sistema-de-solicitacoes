@@ -3,16 +3,16 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Produtos } from 'src/app/models/produtos.model';
 
 @Component({
-  selector: 'app-add-or-edit',
-  templateUrl: './add-or-edit.component.html',
-  styleUrls: ['./add-or-edit.component.css']
+  selector: 'app-produto-adicionar-ou-editar',
+  templateUrl: './produto-adicionar-ou-editar.component.html',
+  styleUrls: ['./produto-adicionar-ou-editar.component.css']
 })
-export class AddOrEditComponent implements OnInit {
+export class ProdutoAdicionarOuEditarComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: Produtos,
-    public dialogRef: MatDialogRef<AddOrEditComponent>,
+    public dialogRef: MatDialogRef<ProdutoAdicionarOuEditarComponent>,
   ) { }
 
   ngOnInit(): void {

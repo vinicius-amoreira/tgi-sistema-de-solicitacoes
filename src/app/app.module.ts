@@ -20,16 +20,16 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
-import { ProdutosComponent } from './componentes/produtos/produtos.component';
 import { HistoricoComponent } from './componentes/historico/historico.component';
 import { SidenavComponent } from './componentes/sidenav/sidenav.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { AddOrEditComponent } from './componentes/produtos/add-or-edit/add-or-edit.component';
-import { DeleteComponent } from './componentes/produtos/delete/delete.component';
 import { MainComponent } from './componentes/main/main.component';
-import { EmpresasComponent } from './componentes/empresas/empresas.component';
-import { CompanyDeleteComponent } from './componentes/empresas/company-delete/company-delete.component';
-import { CompanyAddOrEditComponent } from './componentes/empresas/company-add-or-edit/company-add-or-edit.component';
+import { ProdutosComponent } from './componentes/produtos/produtos.component';
+import { ProdutoAdicionarOuEditarComponent } from './componentes/produtos/produto-adicionar-ou-editar/produto-adicionar-ou-editar.component';
+import { ExculirProdutoComponent } from './componentes/produtos/produto-excluir/produto-excluir.component';
+import { EscolasComponent } from './componentes/escolas/escolas.component';
+import { EscolaAdicionarOuEditarComponent } from './componentes/escolas/escola-adicionar-ou-editar/escola-adicionar-ou-editar.component';
+import { EscolaExcluirComponent } from './componentes/escolas/escola-excluir/escola-excluir.component';
 
 @NgModule({
   declarations: [
@@ -38,12 +38,12 @@ import { CompanyAddOrEditComponent } from './componentes/empresas/company-add-or
     ProdutosComponent,
     HistoricoComponent,
     SidenavComponent,
-    AddOrEditComponent,
-    DeleteComponent,
+    ProdutoAdicionarOuEditarComponent,
+    ExculirProdutoComponent,
     MainComponent,
-    EmpresasComponent,
-    CompanyDeleteComponent,
-    CompanyAddOrEditComponent,
+    EscolasComponent,
+    EscolaAdicionarOuEditarComponent,
+    EscolaExcluirComponent
   ],
   imports: [
     BrowserModule,

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddOrEditComponent } from './add-or-edit.component';
+import { ExculirProdutoComponent } from './produto-excluir.component';
 
-describe('AddOrEditComponent', () => {
-  let component: AddOrEditComponent;
-  let fixture: ComponentFixture<AddOrEditComponent>;
+describe('DeleteComponent', () => {
+  let component: ExculirProdutoComponent;
+  let fixture: ComponentFixture<ExculirProdutoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddOrEditComponent ]
+      declarations: [ ExculirProdutoComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AddOrEditComponent);
+    fixture = TestBed.createComponent(ExculirProdutoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
