@@ -1,4 +1,3 @@
-
 table {
   width: 100%;
 }
@@ -17,7 +16,4 @@ table th, td {
 .content-table {
   max-width: 100%;
   padding: 5vh 5vw 10vh 5vw;
-}
-
-.content {
 }

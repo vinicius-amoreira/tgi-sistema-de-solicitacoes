@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmpresasComponent } from './empresas.component';
+import { EscolaExcluirComponent } from './escola-excluir.component';
 
-describe('EmpresasComponent', () => {
-  let component: EmpresasComponent;
-  let fixture: ComponentFixture<EmpresasComponent>;
+describe('EscolaExcluirComponent', () => {
+  let component: EscolaExcluirComponent;
+  let fixture: ComponentFixture<EscolaExcluirComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmpresasComponent ]
+      declarations: [ EscolaExcluirComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EmpresasComponent);
+    fixture = TestBed.createComponent(EscolaExcluirComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

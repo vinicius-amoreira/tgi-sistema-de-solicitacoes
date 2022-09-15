@@ -2,8 +2,8 @@ import { Component, OnInit,  ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { Produtos } from 'src/app/models/produtos.model';
-import { AddOrEditComponent } from './add-or-edit/add-or-edit.component';
-import { DeleteComponent } from './delete/delete.component';
+import { ProdutoAdicionarOuEditarComponent } from './produto-adicionar-ou-editar/produto-adicionar-ou-editar.component';
+import { ExculirProdutoComponent } from './produto-excluir/produto-excluir.component';
 
 const ELEMENT_DATA: Produtos[] = [
   {id: 1, name: 'teste', entry: 'teste', exit: 'teste'},
@@ -37,7 +37,7 @@ export class ProdutosComponent implements OnInit {
   }
 
   addProduct(element: Produtos | null): void {
-    const dialogRef = this.dialog.open(AddOrEditComponent, {
+    const dialogRef = this.dialog.open(ProdutoAdicionarOuEditarComponent, {
       width: '70%',
       data: element === null ? {
         id: '',
@@ -77,7 +77,7 @@ export class ProdutosComponent implements OnInit {
   }
 
   deleteProduct(element: Produtos): void {
-    const dialogRef = this.dialog.open(DeleteComponent, {
+    const dialogRef = this.dialog.open(ExculirProdutoComponent, {
       width: '70%',
     });
 
