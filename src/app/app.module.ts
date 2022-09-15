@@ -23,6 +23,7 @@ import { SidenavComponent } from './componentes/sidenav/sidenav.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddOrEditComponent } from './componentes/produtos/add-or-edit/add-or-edit.component';
 import { DeleteComponent } from './componentes/produtos/delete/delete.component';
+import { MainComponent } from './componentes/main/main.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DeleteComponent } from './componentes/produtos/delete/delete.component'
     HistoricoComponent,
     SidenavComponent,
     AddOrEditComponent,
-    DeleteComponent
+    DeleteComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,

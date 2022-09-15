@@ -22,8 +22,6 @@ describe('AppComponent', () => {
 
   it(`should have as title 'app-tgi'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('app-tgi');
   });
 
   it('should render title', () => {
