@@ -22,6 +22,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AddOrEditComponent } from './componentes/produtos/add-or-edit/add-or-edit.component';
 import { DeleteComponent } from './componentes/produtos/delete/delete.component';
 import {MainComponent} from "./componentes/main/main.component";
+import {MatCardModule} from "@angular/material/card";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -32,7 +37,7 @@ import {MainComponent} from "./componentes/main/main.component";
     SidenavComponent,
     AddOrEditComponent,
     DeleteComponent,
-    MainComponent
+    MainComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +53,11 @@ import {MainComponent} from "./componentes/main/main.component";
     MatDialogModule,
     MatFormFieldModule,
     NgxChartsModule,
+    MatCardModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,25 @@
+table {
+  width: 90vw;
+}
+
+table th, td {
+  text-align: center;
+}
+
+.header-table {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 1vh 2vw;
+  box-shadow: 0 2px 7px 1px rgb(0 0 0 / 20%);
+}
+
+.align-table {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.container {
+
+}

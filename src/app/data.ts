@@ -18,7 +18,36 @@ export var single = [
   {
     "name": "Maio",
     "value": 134
-  }
+  },
+  {
+    "name": "Junho",
+    "value": 214
+  },
+  {
+    "name": "Julho",
+    "value": 122
+  },
+  {
+    "name": "Agosto",
+    "value": 176
+  },
+  {
+    "name": "Setembro",
+    "value": 199
+  },
+  {
+    "name": "Outrubro",
+    "value": 250
+  },
+  {
+    "name": "Novembro",
+    "value": 112
+  },
+  {
+    "name": "Dezembro",
+    "value": 167
+  },
+
 ];
 
 export var multi = [
