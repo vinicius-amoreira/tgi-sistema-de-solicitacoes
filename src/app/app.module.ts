@@ -10,14 +10,17 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from "@angular/material/card";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
+import { MatInputModule } from "@angular/material/input";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { ProdutosComponent } from './componentes/produtos/produtos.component';
-import { SolicitacoesComponent } from './componentes/solicitacoes/solicitacoes.component';
-import { AdicionarRetirarComponent } from './componentes/adicionar-retirar/adicionar-retirar.component';
 import { HistoricoComponent } from './componentes/historico/historico.component';
 import { SidenavComponent } from './componentes/sidenav/sidenav.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -33,8 +36,6 @@ import { CompanyAddOrEditComponent } from './componentes/empresas/company-add-or
     AppComponent,
     DashboardComponent,
     ProdutosComponent,
-    SolicitacoesComponent,
-    AdicionarRetirarComponent,
     HistoricoComponent,
     SidenavComponent,
     AddOrEditComponent,
@@ -58,6 +59,11 @@ import { CompanyAddOrEditComponent } from './componentes/empresas/company-add-or
     MatDialogModule,
     MatFormFieldModule,
     NgxChartsModule,
+    MatCardModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
