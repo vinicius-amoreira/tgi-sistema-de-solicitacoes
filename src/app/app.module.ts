@@ -24,6 +24,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AddOrEditComponent } from './componentes/produtos/add-or-edit/add-or-edit.component';
 import { DeleteComponent } from './componentes/produtos/delete/delete.component';
 import { MainComponent } from './componentes/main/main.component';
+import { EmpresasComponent } from './componentes/empresas/empresas.component';
+import { CompanyDeleteComponent } from './componentes/empresas/company-delete/company-delete.component';
+import { CompanyAddOrEditComponent } from './componentes/empresas/company-add-or-edit/company-add-or-edit.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { MainComponent } from './componentes/main/main.component';
     AddOrEditComponent,
     DeleteComponent,
     MainComponent,
+    EmpresasComponent,
+    CompanyDeleteComponent,
+    CompanyAddOrEditComponent,
   ],
   imports: [
     BrowserModule,
