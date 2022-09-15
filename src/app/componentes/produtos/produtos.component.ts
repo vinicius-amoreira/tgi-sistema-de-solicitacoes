@@ -6,10 +6,10 @@ import { ProdutoAdicionarOuEditarComponent } from './produto-adicionar-ou-editar
 import { ExculirProdutoComponent } from './produto-excluir/produto-excluir.component';
 
 const ELEMENT_DATA: Produtos[] = [
-  {id: 1, name: 'teste', entry: 'teste', exit: 'teste'},
-  {id: 2, name: 'teste', entry: 'teste', exit: 'teste'},
-  {id: 3, name: 'teste', entry: 'teste', exit: 'teste'},
-  {id: 4, name: 'teste', entry: 'teste', exit: 'teste'},
+  {id: 1, name: 'teste', entry: 'teste', exit: 'teste', date: 'teste', quantity: 40},
+  {id: 2, name: 'teste', entry: 'teste', exit: 'teste', date: 'teste', quantity: 40},
+  {id: 3, name: 'teste', entry: 'teste', exit: 'teste', date: 'teste', quantity: 40},
+  {id: 4, name: 'teste', entry: 'teste', exit: 'teste', date: 'teste', quantity: 40},
 ];
 @Component({
   selector: 'app-produtos',
@@ -19,7 +19,7 @@ const ELEMENT_DATA: Produtos[] = [
 export class ProdutosComponent implements OnInit {
   @ViewChild(MatTable)
   table!: MatTable<any>
-  displayedColumns: string[] = ['id', 'nome', 'entrada', 'saida', 'acoes'];
+  displayedColumns: string[] = ['id', 'nome', 'entrada', 'saida', 'data', 'quantidade', 'acoes'];
   dataSource: any[]
 
   constructor(
@@ -44,11 +44,15 @@ export class ProdutosComponent implements OnInit {
         name: '',
         entry: '',
         exit: '',
+        date: '',
+        quantity: ''
       } :  {
         id: element.id,
         name: element.name,
         entry: element.entry,
         exit: element.exit,
+        date: element.date,
+        quantity: element.quantity,
       }
     });
 
