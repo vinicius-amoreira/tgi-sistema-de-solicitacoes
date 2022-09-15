@@ -1,0 +1,23 @@
+
+table {
+  width: 50vw;
+}
+
+table th, td {
+  text-align: center;
+}
+
+.header-table {
+  display: flex;
+  justify-content: space-between;
+  padding: 1vh 2vw;
+  box-shadow: 0 4px 7px 1px rgba(0,0,0,0.3);
+}
+
+.align-table {
+
+}
+
+.container {
+
+}

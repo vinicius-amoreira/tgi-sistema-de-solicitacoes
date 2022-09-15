@@ -1,33 +1,28 @@
-<mat-sidenav-container class="sidenav-container" autosize>
-  <mat-sidenav #sidenav mode="side" opened fixedInViewport="true">
-    <mat-nav-list>
-      <mat-list-item (click)="isExpanded = !isExpanded">
-        <mat-icon mat-list-icon>menu</mat-icon>
-      </mat-list-item>
-      <mat-list-item routerLink="dashboard">
-        <mat-icon mat-list-icon>leaderboard</mat-icon>
-        <span *ngIf="isExpanded">Dashboard</span>
-      </mat-list-item>
-      <mat-list-item routerLink="produtos">
-        <mat-icon mat-list-icon>inventory_2</mat-icon>
-        <span *ngIf="isExpanded">Produtos</span>
-      </mat-list-item>
-      <mat-list-item routerLink="solicitacoes">
-        <mat-icon mat-list-icon>campaign</mat-icon>
-        <span *ngIf="isExpanded">Solicitações</span>
-      </mat-list-item>
-      <mat-list-item routerLink="adicionar-retirar">
-        <mat-icon mat-list-icon>edit</mat-icon>
-        <span *ngIf="isExpanded">Adicionar/Retirar</span>
-      </mat-list-item>
-      <mat-list-item routerLink="historico">
-        <mat-icon mat-list-icon>history</mat-icon>
-        <span *ngIf="isExpanded">Histórico</span>
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
 
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<mat-sidenav #sidenav mode="side" opened fixedInViewport="true">
+  <mat-nav-list>
+    <mat-list-item (click)="isExpanded = !isExpanded">
+      <mat-icon mat-list-icon>menu</mat-icon>
+    </mat-list-item>
+    <mat-list-item routerLink="dashboard">
+      <mat-icon mat-list-icon>leaderboard</mat-icon>
+      <span *ngIf="isExpanded">Dashboard</span>
+    </mat-list-item>
+    <mat-list-item routerLink="produtos">
+      <mat-icon mat-list-icon>inventory_2</mat-icon>
+      <span *ngIf="isExpanded">Produtos</span>
+    </mat-list-item>
+    <mat-list-item routerLink="solicitacoes">
+      <mat-icon mat-list-icon>campaign</mat-icon>
+      <span *ngIf="isExpanded">Solicitações</span>
+    </mat-list-item>
+    <mat-list-item routerLink="adicionar-retirar">
+      <mat-icon mat-list-icon>edit</mat-icon>
+      <span *ngIf="isExpanded">Adicionar/Retirar</span>
+    </mat-list-item>
+    <mat-list-item routerLink="historico">
+      <mat-icon mat-list-icon>history</mat-icon>
+      <span *ngIf="isExpanded">Histórico</span>
+    </mat-list-item>
+  </mat-nav-list>
+</mat-sidenav>

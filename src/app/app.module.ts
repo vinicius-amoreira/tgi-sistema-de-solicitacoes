@@ -1,20 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatListModule} from "@angular/material/list";
-import {MatIconModule} from "@angular/material/icon";
-import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {NgxChartsModule} from "@swimlane/ngx-charts";
+
+import { MatListModule } from "@angular/material/list";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgxChartsModule } from "@swimlane/ngx-charts";
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { ProdutosComponent } from './componentes/produtos/produtos.component';
 import { SolicitacoesComponent } from './componentes/solicitacoes/solicitacoes.component';
 import { AdicionarRetirarComponent } from './componentes/adicionar-retirar/adicionar-retirar.component';
 import { HistoricoComponent } from './componentes/historico/historico.component';
 import { SidenavComponent } from './componentes/sidenav/sidenav.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddOrEditComponent } from './componentes/produtos/add-or-edit/add-or-edit.component';
+import { DeleteComponent } from './componentes/produtos/delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +32,9 @@ import { SidenavComponent } from './componentes/sidenav/sidenav.component';
     SolicitacoesComponent,
     AdicionarRetirarComponent,
     HistoricoComponent,
-    SidenavComponent
+    SidenavComponent,
+    AddOrEditComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -32,8 +42,13 @@ import { SidenavComponent } from './componentes/sidenav/sidenav.component';
     BrowserAnimationsModule,
     MatListModule,
     MatIconModule,
+    MatButtonModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatGridListModule,
+    MatTableModule,
+    MatDialogModule,
+    MatFormFieldModule,
     NgxChartsModule,
   ],
   providers: [],
