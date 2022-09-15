@@ -16,27 +16,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { ProdutosComponent } from './componentes/produtos/produtos.component';
-import { SolicitacoesComponent } from './componentes/solicitacoes/solicitacoes.component';
-import { AdicionarRetirarComponent } from './componentes/adicionar-retirar/adicionar-retirar.component';
 import { HistoricoComponent } from './componentes/historico/historico.component';
 import { SidenavComponent } from './componentes/sidenav/sidenav.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddOrEditComponent } from './componentes/produtos/add-or-edit/add-or-edit.component';
 import { DeleteComponent } from './componentes/produtos/delete/delete.component';
-import { MainComponent } from './componentes/main/main.component';
+import {MainComponent} from "./componentes/main/main.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     ProdutosComponent,
-    SolicitacoesComponent,
-    AdicionarRetirarComponent,
     HistoricoComponent,
     SidenavComponent,
     AddOrEditComponent,
     DeleteComponent,
-    MainComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

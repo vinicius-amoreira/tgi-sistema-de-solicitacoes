@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {DashboardComponent} from "./componentes/dashboard/dashboard.component";
 import {ProdutosComponent} from "./componentes/produtos/produtos.component";
-import {SolicitacoesComponent} from "./componentes/solicitacoes/solicitacoes.component";
-import {AdicionarRetirarComponent} from "./componentes/adicionar-retirar/adicionar-retirar.component";
 import {HistoricoComponent} from "./componentes/historico/historico.component";
 import {MainComponent} from "./componentes/main/main.component";
+import {EscolasComponent} from "./componentes/escolas/escolas.component";
 
 const routes: Routes = [
   {
@@ -21,12 +20,8 @@ const routes: Routes = [
         component: ProdutosComponent,
       },
       {
-        path: 'solicitacoes',
-        component: SolicitacoesComponent,
-      },
-      {
-        path: 'adicionar-retirar',
-        component: AdicionarRetirarComponent,
+        path: 'escolas',
+        component: EscolasComponent,
       },
       {
         path: 'historico',
