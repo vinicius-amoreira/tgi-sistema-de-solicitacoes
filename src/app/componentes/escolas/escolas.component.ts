@@ -2,13 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { Escolas } from 'src/app/models/escolas.model';
+import { EscolaAdicionarOuEditarComponent } from './escola-adicionar-ou-editar/escola-adicionar-ou-editar.component';
 import { EscolaExcluirComponent } from './escola-excluir/escola-excluir.component';
 
 const ELEMENT_DATA: Escolas[] = [
-  {id: 1, name: 'teste'},
-  {id: 2, name: 'teste'},
-  {id: 3, name: 'teste'},
-  {id: 4, name: 'teste'},
+  {id: 1, name: 'teste', unidadeName: 'teste', address: 'teste', celphone: 19954687145},
+  {id: 2, name: 'teste', unidadeName: 'teste', address: 'teste', celphone: 19954687145},
+  {id: 3, name: 'teste', unidadeName: 'teste', address: 'teste', celphone: 19954687145},
+  {id: 4, name: 'teste', unidadeName: 'teste', address: 'teste', celphone: 19954687145},
 ];
 
 @Component({
@@ -19,7 +20,7 @@ const ELEMENT_DATA: Escolas[] = [
 export class EscolasComponent implements OnInit {
   @ViewChild(MatTable)
   table!: MatTable<any>
-  displayedColumns: string[] = ['id', 'nome', 'acoes'];
+  displayedColumns: string[] = ['id', 'nome', 'nomeUnidade', 'endereco', 'telefone', 'acoes'];
   dataSource: any[]
 
   constructor(
@@ -37,18 +38,23 @@ export class EscolasComponent implements OnInit {
   }
 
   addSchools(element: Escolas | null): void {
-    // const dialogRef = this.dialog.open(AddOrEditComponent, {
-    //   width: '70%',
-    //   data: element === null ? {
-    //     id: '',
-    //     companyName: '',
-    //     cnpj: ''
-    //   } :  {
-    //     id: element.id,
-    //     companyName: element.companyName,
-    //     cnpj: element.cnpj
-    //   }
-    // });
+    const dialogRef = this.dialog.open(EscolaAdicionarOuEditarComponent, {
+      width: '70%',
+      data: element === null ? {
+        id: '',
+        name: '',
+        unidadeName: '',
+        address: '',
+        celphone: ''
+
+      } :  {
+        id: element.id,
+        name: element.name,
+        unidadeName: element.unidadeName,
+        address: element.address,
+        celphone: element.celphone
+      }
+    });
 
     // dialogRef.afterClosed().subscribe(result => {
     //   if (result !== undefined) {
