@@ -1,12 +1,38 @@
-<h1 mat-dialog-title>Adicionar Produto</h1>
-<div mat-dialog-content>
-  <p>teste</p>
-  <mat-form-field appearance="fill">
-    <mat-label>teste</mat-label>
-    <!-- <input matInput [(ngModel)]=""> -->
-  </mat-form-field>
+
+<div class="dialog-header">
+  <h1 mat-dialog-title>Adicionar Escola</h1>
+  <hr>
 </div>
-<div mat-dialog-actions>
+
+<div mat-dialog-content>
+  <div class="inputs">
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Nome da Escola</mat-label>
+      <input matInput placeholder="Placeholder">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Nome da Unidade</mat-label>
+      <input matInput placeholder="Placeholder">
+    </mat-form-field>
+  </div>
+
+  <div class="inputs">
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Endereço da Unidade</mat-label>
+      <input matInput placeholder="Placeholder">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Telefone da Unidae</mat-label>
+      <input matInput placeholder="Placeholder">
+    </mat-form-field>
+  </div>
+
+</div>
+
+<div  class="dialog-footer">
+  <hr>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Adicionar</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial color="primary">Adicionar</button>
 </div>
