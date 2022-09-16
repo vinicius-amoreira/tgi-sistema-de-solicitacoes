@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Escolas } from 'src/app/models/escolas.model';
 
 @Component({
@@ -10,6 +10,7 @@ import { Escolas } from 'src/app/models/escolas.model';
 export class EscolaExcluirComponent implements OnInit {
 
   constructor(
+    @Inject(MAT_DIALOG_DATA)
     public data: Escolas,
     public dialogRef: MatDialogRef<EscolaExcluirComponent>,
   ) { }
