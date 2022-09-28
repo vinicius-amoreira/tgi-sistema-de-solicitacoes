@@ -24,6 +24,10 @@ const routes: Routes = [
         component: EscolasComponent,
       },
       {
+        path: 'request',
+        component: EscolasComponent,
+      },
+      {
         path: 'historico',
         component: HistoricoComponent,
       },

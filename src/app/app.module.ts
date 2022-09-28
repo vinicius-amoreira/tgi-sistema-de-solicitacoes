@@ -30,6 +30,7 @@ import { ExculirProdutoComponent } from './componentes/produtos/produto-excluir/
 import { EscolasComponent } from './componentes/escolas/escolas.component';
 import { EscolaAdicionarOuEditarComponent } from './componentes/escolas/escola-adicionar-ou-editar/escola-adicionar-ou-editar.component';
 import { EscolaExcluirComponent } from './componentes/escolas/escola-excluir/escola-excluir.component';
+import { RequestsComponent } from './componentes/requests/requests.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { EscolaExcluirComponent } from './componentes/escolas/escola-excluir/esc
     MainComponent,
     EscolasComponent,
     EscolaAdicionarOuEditarComponent,
-    EscolaExcluirComponent
+    EscolaExcluirComponent,
+    RequestsComponent
   ],
   imports: [
     BrowserModule,
