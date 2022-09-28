@@ -31,6 +31,7 @@ import { EscolasComponent } from './componentes/escolas/escolas.component';
 import { EscolaAdicionarOuEditarComponent } from './componentes/escolas/escola-adicionar-ou-editar/escola-adicionar-ou-editar.component';
 import { EscolaExcluirComponent } from './componentes/escolas/escola-excluir/escola-excluir.component';
 import { RequestsComponent } from './componentes/requests/requests.component';
+import { AddRequestComponent } from './componentes/requests/add-request/add-request.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { RequestsComponent } from './componentes/requests/requests.component';
     EscolasComponent,
     EscolaAdicionarOuEditarComponent,
     EscolaExcluirComponent,
-    RequestsComponent
+    RequestsComponent,
+    AddRequestComponent
   ],
   imports: [
     BrowserModule,
