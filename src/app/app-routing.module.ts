@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {DashboardComponent} from "./componentes/dashboard/dashboard.component";
-import {ProdutosComponent} from "./componentes/produtos/produtos.component";
-import {HistoricoComponent} from "./componentes/historico/historico.component";
-import {MainComponent} from "./componentes/main/main.component";
-import {EscolasComponent} from "./componentes/escolas/escolas.component";
+import { DashboardComponent } from "./componentes/dashboard/dashboard.component";
+import { ProdutosComponent } from "./componentes/produtos/produtos.component";
+import { HistoricoComponent } from "./componentes/historico/historico.component";
+import { MainComponent } from "./componentes/main/main.component";
+import { EscolasComponent } from "./componentes/escolas/escolas.component";
+import { RequestsComponent } from './componentes/requests/requests.component';
 
 const routes: Routes = [
   {
@@ -24,8 +25,8 @@ const routes: Routes = [
         component: EscolasComponent,
       },
       {
-        path: 'request',
-        component: EscolasComponent,
+        path: 'requests',
+        component: RequestsComponent,
       },
       {
         path: 'historico',
