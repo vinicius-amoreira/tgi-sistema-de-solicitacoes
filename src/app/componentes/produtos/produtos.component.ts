@@ -1,16 +1,11 @@
 import { Component, OnInit,  ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { Produtos } from 'src/app/models/produtos.model';
+import { ProdutosModel } from 'src/app/models/produtos.model';
 import { ProdutoAdicionarOuEditarComponent } from './produto-adicionar-ou-editar/produto-adicionar-ou-editar.component';
 import { ExculirProdutoComponent } from './produto-excluir/produto-excluir.component';
+import {ProdutosService} from "../../services/produtos.service";
 
-const ELEMENT_DATA: Produtos[] = [
-  {id: 1, name: 'teste', entry: 'teste', exit: 'teste', date: 'teste', quantity: 40},
-  {id: 2, name: 'teste', entry: 'teste', exit: 'teste', date: 'teste', quantity: 40},
-  {id: 3, name: 'teste', entry: 'teste', exit: 'teste', date: 'teste', quantity: 40},
-  {id: 4, name: 'teste', entry: 'teste', exit: 'teste', date: 'teste', quantity: 40},
-];
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.component.html',
@@ -19,68 +14,75 @@ const ELEMENT_DATA: Produtos[] = [
 export class ProdutosComponent implements OnInit {
   @ViewChild(MatTable)
   table!: MatTable<any>
-  displayedColumns: string[] = ['id', 'nome', 'entrada', 'saida', 'data', 'quantidade', 'acoes'];
-  dataSource: any[]
+  displayedColumns: string[] = ['id', 'nome', 'descricao', 'quantidade', 'acoes'];
+  dataSource: ProdutosModel[];
+  produtos: ProdutosModel[] = [];
+  produto: ProdutosModel = {
+    name: '',
+    description: '',
+    image: '',
+    unit: {
+      unit: '',
+      description: '',
+    },
+    stock: {
+      quantity: null,
+      quantity_min: null,
+    }
+  };
 
   constructor(
     public dialog: MatDialog,
+    private produtosService: ProdutosService,
     // public vehiclesService: VehiclesService,
     ) {
       // this.vehiclesService.getElements()
       //   .subscribe((data: any) => {
         //     this.dataSource = data.data;
         //   });
-        this.dataSource = ELEMENT_DATA;
+        this.dataSource = this.produtos;
       }
 
       ngOnInit(): void {
+        this.listProducts();
+      }
+
+  listProducts(): void {
+    this.produtosService.read().subscribe((data) => {
+      this.produtos = data;
+    })
   }
 
-  addProduct(element: Produtos | null): void {
+  addProduct(produto: ProdutosModel | null): void {
     const dialogRef = this.dialog.open(ProdutoAdicionarOuEditarComponent, {
       width: '70%',
-      data: element === null ? {
+      data: produto === null ? {
         id: '',
         name: '',
-        entry: '',
-        exit: '',
-        date: '',
+        description: '',
         quantity: ''
       } :  {
-        id: element.id,
-        name: element.name,
-        entry: element.entry,
-        exit: element.exit,
-        date: element.date,
-        quantity: element.quantity,
+        id: produto.id,
+        name: produto.name,
+        description: produto.description,
+        quantity: produto.stock.quantity,
       }
     });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result !== undefined) {
-    //     if ('id' in result) {
-    //       this.vehiclesService.editElements(result)
-    //         .subscribe((data: any) => {
-    //           const index = this.dataSource.findIndex(i => i.id === data.id)
-    //           this.dataSource[index] = data;
-    //           this.table.renderRows();
-    //         })
-    //     } else {
-    //       this.vehiclesService.createElements(result)
-    //       .subscribe((data: any) => {
-    //         this.dataSource.push(data.data);
-    //         this.table.renderRows();
-    //       });
-    //     }
-    //   }
-    // });
+    console.log(produto);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+
+      }
+    });
   }
 
-  editProduct(element: Produtos): void {
-    this.addProduct(element);
+  editProduct(produto: ProdutosModel): void {
+    this.addProduct(produto);
   }
 
-  deleteProduct(element: Produtos): void {
+  deleteProduct(element: ProdutosModel): void {
     const dialogRef = this.dialog.open(ExculirProdutoComponent, {
       width: '70%',
     });

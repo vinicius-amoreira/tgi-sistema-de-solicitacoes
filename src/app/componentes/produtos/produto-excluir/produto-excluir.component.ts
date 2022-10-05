@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Produtos } from '../../../models/produtos.model';
+import { ProdutosModel } from '../../../models/produtos.model';
 
 @Component({
   selector: 'app-produto-excluir',
@@ -11,7 +11,7 @@ export class ExculirProdutoComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public data: Produtos,
+    public data: ProdutosModel,
     public dialogRef: MatDialogRef<ExculirProdutoComponent>,
   ) { }
 

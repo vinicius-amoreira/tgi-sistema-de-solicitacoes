@@ -18,14 +18,14 @@
       </div>
 
       <div class="add">
-        <button mat-button color="primary" (click)="addSchools('' || null)">
+        <button mat-button color="primary" >
           <span>Adicionar Escola</span>
         </button>
       </div>
     </div>
 
     <div class="align-table">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table mat-table [dataSource]="escolas" class="mat-elevation-z8">
 
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef> Id </th>
@@ -34,12 +34,12 @@
 
         <ng-container matColumnDef="nome">
           <th mat-header-cell *matHeaderCellDef> Nome da Escola </th>
-          <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+          <td mat-cell *matCellDef="let element"> {{ element.school.name }} </td>
         </ng-container>
 
         <ng-container matColumnDef="nomeUnidade">
           <th mat-header-cell *matHeaderCellDef> Nome da Unidade </th>
-          <td mat-cell *matCellDef="let element"> {{ element.unidadeName }} </td>
+          <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
         </ng-container>
 
         <ng-container matColumnDef="endereco">
@@ -48,17 +48,19 @@
         </ng-container>
 
         <ng-container matColumnDef="telefone">
-          <th mat-header-cell *matHeaderCellDef> telefone da Unidade </th>
-          <td mat-cell *matCellDef="let element"> {{ element.celphone }} </td>
+          <th mat-header-cell *matHeaderCellDef> Telefones da unidade </th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngFor="let phone of element.phone">{{ phone.phone }}<br></span>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="acoes">
           <th mat-header-cell *matHeaderCellDef> Ações </th>
           <td mat-cell *matCellDef="let element">
-            <button mat-icon-button (click)="editSchools(element)" color="primary">
+            <button mat-icon-button  color="primary">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button (click)="deleteSchools(element)" color="warn">
+            <button mat-icon-button  color="warn">
               <mat-icon class="mat-buttons">delete</mat-icon>
             </button>
           </td>

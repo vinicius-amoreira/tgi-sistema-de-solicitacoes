@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from "@angular/common/http";
 
 import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
@@ -14,6 +15,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatInputModule } from "@angular/material/input";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { AppRoutingModule } from './app-routing.module';
@@ -47,13 +49,15 @@ import { AddRequestComponent } from './componentes/requests/add-request/add-requ
     EscolaAdicionarOuEditarComponent,
     EscolaExcluirComponent,
     RequestsComponent,
-    AddRequestComponent
+    AddRequestComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatListModule,
+    MatSnackBarModule,
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,

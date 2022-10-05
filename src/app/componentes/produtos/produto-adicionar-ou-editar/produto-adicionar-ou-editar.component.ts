@@ -1,6 +1,6 @@
 import { Component, OnInit,  Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Produtos } from 'src/app/models/produtos.model';
+import { ProdutosModel } from 'src/app/models/produtos.model';
 
 @Component({
   selector: 'app-produto-adicionar-ou-editar',
@@ -11,11 +11,12 @@ export class ProdutoAdicionarOuEditarComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public data: Produtos,
+    public data: ProdutosModel,
     public dialogRef: MatDialogRef<ProdutoAdicionarOuEditarComponent>,
   ) { }
 
   ngOnInit(): void {
+    console.log(this.data);
   }
 
   onNoClick(): void {
