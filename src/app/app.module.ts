@@ -37,6 +37,11 @@ import { AddRequestComponent } from './componentes/requests/add-request/add-requ
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {FormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
+import { UnidadeEscolarAdicionarOuEditarComponent } from './componentes/escolas/unidade-escolar-adicionar-ou-editar/unidade-escolar-adicionar-ou-editar.component';
+import { UnidadeEscolarExcluirComponent } from './componentes/escolas/unidade-escolar-excluir/unidade-escolar-excluir.component';
+import { CriarSolicitacaoComponent } from './componentes/historico/criar-solicitacao/criar-solicitacao.component';
+import { VisualizarSolicitacaoComponent } from './componentes/historico/visualizar-solicitacao/visualizar-solicitacao.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [
@@ -53,6 +58,10 @@ import {MatSelectModule} from "@angular/material/select";
     EscolaExcluirComponent,
     RequestsComponent,
     AddRequestComponent,
+    UnidadeEscolarAdicionarOuEditarComponent,
+    UnidadeEscolarExcluirComponent,
+    CriarSolicitacaoComponent,
+    VisualizarSolicitacaoComponent,
   ],
   imports: [
     HttpClientModule,
@@ -78,6 +87,7 @@ import {MatSelectModule} from "@angular/material/select";
     MatPaginatorModule,
     FormsModule,
     MatSelectModule,
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,11 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
-import { EscolasModel } from 'src/app/models/escolas.model';
+import {EscolasModel, UnidadeEscolarModel} from 'src/app/models/escolas.model';
 import { EscolaAdicionarOuEditarComponent } from './escola-adicionar-ou-editar/escola-adicionar-ou-editar.component';
 import { EscolaExcluirComponent } from './escola-excluir/escola-excluir.component';
 import {EscolasService} from "../../services/escolas.service";
 import {PageEvent} from "@angular/material/paginator";
+import {UnidadesEscolaresService} from "../../services/unidadesEscolares.service";
+import {
+  UnidadeEscolarAdicionarOuEditarComponent
+} from "./unidade-escolar-adicionar-ou-editar/unidade-escolar-adicionar-ou-editar.component";
+import {UnidadeEscolarExcluirComponent} from "./unidade-escolar-excluir/unidade-escolar-excluir.component";
 
 
 @Component({
@@ -16,13 +21,26 @@ import {PageEvent} from "@angular/material/paginator";
 export class EscolasComponent implements OnInit {
   @ViewChild(MatTable)
   table!: MatTable<any>
-  displayedColumns: string[] = ['nome', 'nomeUnidade', 'endereco', 'telefone', 'acoes'];
+  schoolColumns: string[] = ['nome', 'acoes'];
+  schoolUnitColumns: string[] = ['nome', 'nomeUnidade', 'endereco', 'telefone', 'acoes']
+  unidadesEscolares: UnidadeEscolarModel[] = [];
+  unidadeEscolar: UnidadeEscolarModel = {
+    name: '',
+    address: '',
+    phone: [{phone: '', description: ''}],
+    school: {
+      name: ''
+    },
+  }
   escolas: EscolasModel[] = [];
-  pageSlice: EscolasModel[] = [];
+  escola: EscolasModel = {
+    name: '',
+  }
 
   constructor(
     public dialog: MatDialog,
     private escolasService: EscolasService,
+    private unidadesEscolaresService: UnidadesEscolaresService,
     // public vehiclesService: VehiclesService,
     ) {
       // this.vehiclesService.getElements()
@@ -33,38 +51,48 @@ export class EscolasComponent implements OnInit {
 
       ngOnInit(): void {
         this.listSchools();
+        this.listSchoolsUnits();
       }
 
   listSchools(): void {
     this.escolasService.read().subscribe((data) => {
       this.escolas = data;
-      this.pageSlice = this.escolas.slice(0, 10);
     })
   }
 
-  onPageChange(event: PageEvent) {
-    const paginationOptions = {
-      currentPage: event.pageIndex,
-      itensPerPage: event.pageSize,
-    }
-    console.log(event);
-    const startIndex = event.pageIndex * event.pageSize;
-    let endIndex = startIndex + event.pageSize;
-    if (endIndex > this.escolas.length){
-      endIndex = this.escolas.length;
-    }
-    this.pageSlice = this.escolas.slice(startIndex, endIndex);
+  listSchoolsUnits(): void {
+    this.unidadesEscolaresService.read().subscribe((data) => {
+      this.unidadesEscolares = data;
+    })
   }
 
-  addOrEditSchool(escola: EscolasModel): void {
+  // onPageChange(event: PageEvent) {
+  //   const paginationOptions = {
+  //     currentPage: event.pageIndex,
+  //     itensPerPage: event.pageSize,
+  //   }
+  //   const startIndex = event.pageIndex * event.pageSize;
+  //   let endIndex = startIndex + event.pageSize;
+  //   if (endIndex > this.escolas.length){
+  //     endIndex = this.escolas.length;
+  //   }
+  //   this.pageSlice = this.escolas.slice(startIndex, endIndex);
+  // }
+
+  addSchool(escola: EscolasModel | null): void {
+    console.log(escola);
     const dialogRef = this.dialog.open(EscolaAdicionarOuEditarComponent, {
-      width: '70%',
+      width: '30%',
       data: escola,
     })
 
     dialogRef.afterClosed().subscribe(() => {
       this.listSchools();
     })
+  }
+
+  editSchool(escola: EscolasModel): void {
+    this.addSchool(escola);
   }
 
   deleteSchools(escola: EscolasModel): void {
@@ -75,6 +103,28 @@ export class EscolasComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => {
       this.listSchools();
+    })
+  }
+
+  addOrEditSchoolUnit(unidadeEscolar: UnidadeEscolarModel): void {
+    const dialogRef = this.dialog.open(UnidadeEscolarAdicionarOuEditarComponent, {
+      width: '70%',
+      data: unidadeEscolar
+    })
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.listSchoolsUnits();
+    })
+  }
+
+  deleteSchoolUnit(unidadeEscolar: UnidadeEscolarModel): void {
+    const dialogRef = this.dialog.open(UnidadeEscolarExcluirComponent, {
+      width: '30%',
+      data: unidadeEscolar,
+    })
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.listSchoolsUnits();
     })
   }
 

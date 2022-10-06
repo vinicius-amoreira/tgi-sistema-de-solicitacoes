@@ -5,7 +5,7 @@ import {ProdutosModel} from "./produtos.model";
 
 export interface SolicitacoesModel extends DefaultModel{
   id?: number,
-  requestItems: ItensSolicitacoesModel,
+  requestItems: ItensSolicitacoesModel[],
   schoolUnit: UnidadeEscolarModel,
   requestAction: AcoesModel,
 }

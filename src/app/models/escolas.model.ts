@@ -10,7 +10,7 @@ export interface UnidadeEscolarModel extends DefaultModel{
   name: string,
   address: string,
   school: EscolasModel,
-  phone: TelefonesModel
+  phone: TelefonesModel[],
 }
 
 export interface TelefonesModel {

@@ -5,72 +5,129 @@
 
   <hr class="line">
 
-  <div class="content-table">
-    <div class="header-table">
-      <div class="search">
-        <form class="example-form">
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Busca Avançada</mat-label>
-            <input type="text" matInput placeholder="digite a coluna ou o item">
-            <mat-icon matSuffix>search</mat-icon>
-          </mat-form-field>
-        </form>
-      </div>
+  <mat-tab-group>
+    <mat-tab label="Escolas">
+      <div class="content-table">
+        <div class="header-table">
+          <div class="search">
+            <form class="example-form">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Busca Avançada</mat-label>
+                <input type="text" matInput placeholder="digite a coluna ou o item">
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+            </form>
+          </div>
 
-      <div class="add">
-        <button mat-button color="primary" >
-          <span>Adicionar Escola</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="align-table">
-      <table mat-table [dataSource]="pageSlice" class="mat-elevation-z8">
-
-        <ng-container matColumnDef="nome">
-          <th mat-header-cell *matHeaderCellDef> Escola </th>
-          <td mat-cell *matCellDef="let element"> {{ element.school.name }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="nomeUnidade">
-          <th mat-header-cell *matHeaderCellDef> Unidade Escolar </th>
-          <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="endereco">
-          <th mat-header-cell *matHeaderCellDef> Endereço da Unidade </th>
-          <td mat-cell *matCellDef="let element"> {{ element.address }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="telefone">
-          <th mat-header-cell *matHeaderCellDef> Telefones da unidade </th>
-          <td mat-cell *matCellDef="let element">
-            <span *ngFor="let phone of element.phone">{{ phone.phone }}<br></span>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="acoes">
-          <th mat-header-cell *matHeaderCellDef> Ações </th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-icon-button  color="primary" (click)="addOrEditSchool(element)">
-              <mat-icon>edit</mat-icon>
+          <div class="add">
+            <button mat-button color="primary" (click)="addSchool(escola)">
+              <span>Adicionar Escola</span>
             </button>
-            <button mat-icon-button  color="warn" (click)="deleteSchools(element)">
-              <mat-icon class="mat-buttons">delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+          </div>
+        </div>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
-    <mat-paginator
-      class="mat-elevation-z8"
-      [length]="escolas.length"
-      [pageSize]="10"
-      [pageSizeOptions]="[10, 25, 50, 100]"
-      (page)="onPageChange($event)"
-    ></mat-paginator>
-  </div>
+        <div class="align-table">
+          <table mat-table [dataSource]="escolas" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="nome">
+              <th mat-header-cell *matHeaderCellDef> Escola </th>
+              <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acoes">
+              <th mat-header-cell *matHeaderCellDef> Ações </th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button  color="primary" (click)="editSchool(element)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button  color="warn" (click)="deleteSchools(element)">
+                  <mat-icon class="mat-buttons">delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="schoolColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: schoolColumns;"></tr>
+          </table>
+        </div>
+        <mat-paginator
+          class="mat-elevation-z8"
+          [length]="escolas.length"
+          [pageSize]="10"
+          [pageSizeOptions]="[10, 25, 50, 100]"
+        ></mat-paginator>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Unidades Escolares">
+
+      <div class="content-table">
+        <div class="header-table">
+          <div class="search">
+            <form class="example-form">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Busca Avançada</mat-label>
+                <input type="text" matInput placeholder="digite a coluna ou o item">
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+            </form>
+          </div>
+
+          <div class="add">
+            <button mat-button color="primary" (click)="addOrEditSchoolUnit(unidadeEscolar)">
+              <span>Adicionar Escola</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="align-table">
+          <table mat-table [dataSource]="unidadesEscolares" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="nome">
+              <th mat-header-cell *matHeaderCellDef> Escola </th>
+              <td mat-cell *matCellDef="let element"> {{ element.school?.name }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nomeUnidade">
+              <th mat-header-cell *matHeaderCellDef> Unidade Escolar </th>
+              <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="endereco">
+              <th mat-header-cell *matHeaderCellDef> Endereço da Unidade </th>
+              <td mat-cell *matCellDef="let element"> {{ element.address }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="telefone">
+              <th mat-header-cell *matHeaderCellDef> Telefones da unidade </th>
+              <td mat-cell *matCellDef="let element">
+                <span *ngFor="let phone of element.phone">{{ phone.phone }}<br></span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acoes">
+              <th mat-header-cell *matHeaderCellDef> Ações </th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button  color="primary" (click)="addOrEditSchoolUnit(element)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button  color="warn" (click)="deleteSchoolUnit(element)">
+                  <mat-icon class="mat-buttons">delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="schoolUnitColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: schoolUnitColumns;"></tr>
+          </table>
+        </div>
+        <mat-paginator
+          class="mat-elevation-z8"
+          [length]="escolas.length"
+          [pageSize]="10"
+          [pageSizeOptions]="[10, 25, 50, 100]"
+        ></mat-paginator>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>

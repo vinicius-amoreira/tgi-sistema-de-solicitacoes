@@ -1,68 +1,66 @@
 <div class="container">
   <mat-toolbar>
-    Histórico
+    Solicitações
   </mat-toolbar>
 
   <hr class="line">
 
   <div class="content-table">
     <div class="header-table">
-      <div class="search">
-        <mat-form-field>
-          <input matInput placeholder="Pesquisar" autocomplete="off">
-        </mat-form-field>
+      <div class="filters" style="display: flex">
+        <div class="search">
+          <mat-form-field>
+            <input matInput placeholder="Pesquisar" autocomplete="off">
+          </mat-form-field>
+        </div>
+
+        <div class="date-picker">
+          <mat-form-field>
+            <mat-label>Intervalo de datas</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate placeholder="Data inicial">
+              <input matEndDate placeholder="Data final">
+            </mat-date-range-input>
+            <mat-hint>DD-MM-YYYY - DD-MM-YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+        </div>
       </div>
 
-      <div class="date-picker">
-        <mat-form-field>
-          <mat-label>Intervalo de datas</mat-label>
-          <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Data inicial">
-            <input matEndDate placeholder="Data final">
-          </mat-date-range-input>
-          <mat-hint>DD-MM-YYYY - DD-MM-YYYY</mat-hint>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
-        </mat-form-field>
+      <div class="add">
+        <button mat-button color="primary" (click)="createRequest(solicitacao)">
+          <span>Fazer solicitação</span>
+        </button>
       </div>
+
     </div>
 
     <div class="align-table">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> Id Produto </th>
-          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
+      <table mat-table [dataSource]="solicitacoes" class="mat-elevation-z8">
 
         <ng-container matColumnDef="acao">
           <th mat-header-cell *matHeaderCellDef> Ação </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.requestAction.description}} </td>
         </ng-container>
 
         <ng-container matColumnDef="escola">
           <th mat-header-cell *matHeaderCellDef> Escola </th>
-          <td mat-cell *matCellDef="let element"> {{element.entry}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="produto">
-          <th mat-header-cell *matHeaderCellDef> Produto </th>
-          <td mat-cell *matCellDef="let element"> {{element.exit}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="qtd">
-          <th mat-header-cell *matHeaderCellDef> Quantidade </th>
-          <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.schoolUnit.name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="data">
           <th mat-header-cell *matHeaderCellDef> Data </th>
-          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.created_at | date:"dd/MM/YYYY - HH:mm'h'"}} </td>
         </ng-container>
 
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr
+          mat-row
+          (click)="openRequest(row)"
+          *matRowDef="let row; columns: displayedColumns;"
+        ></tr>
       </table>
     </div>
 

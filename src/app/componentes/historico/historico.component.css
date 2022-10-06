@@ -8,6 +8,7 @@ table th, td {
 
 .header-table {
   display: flex;
+  justify-content: space-between;
   padding: 1vh 2vw 1vh 2vw;
   box-shadow: 0 4px 7px 1px rgba(0,0,0,0.3);
 }
@@ -19,4 +20,17 @@ table th, td {
 
 .date-picker {
   margin-left: 3vw;
+}
+
+.add {
+  align-self: center;
+}
+
+.mat-row .mat-cell {
+  cursor: pointer;
+  transition: ease-in-out .25s;
+}
+
+.mat-row:hover .mat-cell {
+  background-color: rgba(0, 0, 0, 0.15);
 }

@@ -9,24 +9,7 @@
   <div class="inputs">
     <mat-form-field appearance="outline" class="input">
       <mat-label>Escola</mat-label>
-      <input matInput placeholder="Placeholder" name="schoolName" [(ngModel)]="data.school.name">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="input">
-      <mat-label>Unidade Escolar</mat-label>
-      <input matInput placeholder="Placeholder" name="unitName" [(ngModel)]="data.name">
-    </mat-form-field>
-  </div>
-
-  <div class="inputs">
-    <mat-form-field appearance="outline" class="input">
-      <mat-label>Endereço da Unidade</mat-label>
-      <input matInput placeholder="Placeholder" name="address" [(ngModel)]="data.address">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="input">
-      <mat-label>Telefone da Unidade</mat-label>
-        <input matInput placeholder="Placeholder" name="phone" [(ngModel)]="data.phone.phone">
+      <input matInput placeholder="Placeholder" name="schoolName" [(ngModel)]="data.name">
     </mat-form-field>
   </div>
 </div>
@@ -34,5 +17,5 @@
 <div  class="dialog-footer">
   <hr>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="data" color="primary">Adicionar</button>
+  <button mat-button [mat-dialog-close]="data" color="primary" (click)="saveSchool(data)">Adicionar</button>
 </div>
