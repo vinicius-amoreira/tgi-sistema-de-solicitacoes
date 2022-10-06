@@ -3,8 +3,9 @@ import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ProdutosModel } from 'src/app/models/produtos.model';
 import { ProdutoAdicionarOuEditarComponent } from './produto-adicionar-ou-editar/produto-adicionar-ou-editar.component';
-import { ExculirProdutoComponent } from './produto-excluir/produto-excluir.component';
+import { ExcluirProdutoComponent } from './produto-excluir/produto-excluir.component';
 import {ProdutosService} from "../../services/produtos.service";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-produtos',
@@ -17,6 +18,7 @@ export class ProdutosComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nome', 'descricao', 'quantidade', 'acoes'];
   dataSource: ProdutosModel[];
   produtos: ProdutosModel[] = [];
+  pageSlice: ProdutosModel[] = [];
   produto: ProdutosModel = {
     name: '',
     description: '',
@@ -50,31 +52,18 @@ export class ProdutosComponent implements OnInit {
   listProducts(): void {
     this.produtosService.read().subscribe((data) => {
       this.produtos = data;
+      this.pageSlice = this.produtos.slice(0, 25);
     })
   }
 
   addProduct(produto: ProdutosModel | null): void {
     const dialogRef = this.dialog.open(ProdutoAdicionarOuEditarComponent, {
       width: '70%',
-      data: produto === null ? {
-        id: '',
-        name: '',
-        description: '',
-        quantity: ''
-      } :  {
-        id: produto.id,
-        name: produto.name,
-        description: produto.description,
-        quantity: produto.stock.quantity,
-      }
+      data: produto,
     });
 
-    console.log(produto);
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result !== undefined) {
-
-      }
+    dialogRef.afterClosed().subscribe(() => {
+      this.listProducts();
     });
   }
 
@@ -82,19 +71,23 @@ export class ProdutosComponent implements OnInit {
     this.addProduct(produto);
   }
 
-  deleteProduct(element: ProdutosModel): void {
-    const dialogRef = this.dialog.open(ExculirProdutoComponent, {
-      width: '70%',
+  deleteProduct(produto: ProdutosModel): void {
+    const dialogRef = this.dialog.open(ExcluirProdutoComponent, {
+      width: '30%',
+      data: produto,
     });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result !== undefined) {
-    //     this.vehiclesService.deleteElement(element)
-    //       .subscribe(() => {
-    //         this.dataSource = this.dataSource.filter(i => i.id !== element.id);
-    //         this.table.renderRows();
-    //       });
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe(() => {
+      this.listProducts();
+    });
+  }
+
+  onPageChange(event: PageEvent) {
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.produtos.length){
+      endIndex = this.produtos.length;
+    }
+    this.pageSlice = this.produtos.slice(startIndex, endIndex);
   }
 }

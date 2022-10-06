@@ -28,12 +28,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MainComponent } from './componentes/main/main.component';
 import { ProdutosComponent } from './componentes/produtos/produtos.component';
 import { ProdutoAdicionarOuEditarComponent } from './componentes/produtos/produto-adicionar-ou-editar/produto-adicionar-ou-editar.component';
-import { ExculirProdutoComponent } from './componentes/produtos/produto-excluir/produto-excluir.component';
+import { ExcluirProdutoComponent } from './componentes/produtos/produto-excluir/produto-excluir.component';
 import { EscolasComponent } from './componentes/escolas/escolas.component';
 import { EscolaAdicionarOuEditarComponent } from './componentes/escolas/escola-adicionar-ou-editar/escola-adicionar-ou-editar.component';
 import { EscolaExcluirComponent } from './componentes/escolas/escola-excluir/escola-excluir.component';
 import { RequestsComponent } from './componentes/requests/requests.component';
 import { AddRequestComponent } from './componentes/requests/add-request/add-request.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {FormsModule} from "@angular/forms";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -43,7 +46,7 @@ import { AddRequestComponent } from './componentes/requests/add-request/add-requ
     HistoricoComponent,
     SidenavComponent,
     ProdutoAdicionarOuEditarComponent,
-    ExculirProdutoComponent,
+    ExcluirProdutoComponent,
     MainComponent,
     EscolasComponent,
     EscolaAdicionarOuEditarComponent,
@@ -72,6 +75,9 @@ import { AddRequestComponent } from './componentes/requests/add-request/add-requ
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
+    MatPaginatorModule,
+    FormsModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

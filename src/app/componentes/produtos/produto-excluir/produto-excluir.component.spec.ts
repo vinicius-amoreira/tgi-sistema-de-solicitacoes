@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExculirProdutoComponent } from './produto-excluir.component';
+import { ExcluirProdutoComponent } from './produto-excluir.component';
 
 describe('DeleteComponent', () => {
-  let component: ExculirProdutoComponent;
-  let fixture: ComponentFixture<ExculirProdutoComponent>;
+  let component: ExcluirProdutoComponent;
+  let fixture: ComponentFixture<ExcluirProdutoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExculirProdutoComponent ]
+      declarations: [ ExcluirProdutoComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ExculirProdutoComponent);
+    fixture = TestBed.createComponent(ExcluirProdutoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

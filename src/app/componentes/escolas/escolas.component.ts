@@ -5,6 +5,7 @@ import { EscolasModel } from 'src/app/models/escolas.model';
 import { EscolaAdicionarOuEditarComponent } from './escola-adicionar-ou-editar/escola-adicionar-ou-editar.component';
 import { EscolaExcluirComponent } from './escola-excluir/escola-excluir.component';
 import {EscolasService} from "../../services/escolas.service";
+import {PageEvent} from "@angular/material/paginator";
 
 
 @Component({
@@ -15,8 +16,9 @@ import {EscolasService} from "../../services/escolas.service";
 export class EscolasComponent implements OnInit {
   @ViewChild(MatTable)
   table!: MatTable<any>
-  displayedColumns: string[] = ['id', 'nome', 'nomeUnidade', 'endereco', 'telefone', 'acoes'];
+  displayedColumns: string[] = ['nome', 'nomeUnidade', 'endereco', 'telefone', 'acoes'];
   escolas: EscolasModel[] = [];
+  pageSlice: EscolasModel[] = [];
 
   constructor(
     public dialog: MatDialog,
@@ -36,7 +38,43 @@ export class EscolasComponent implements OnInit {
   listSchools(): void {
     this.escolasService.read().subscribe((data) => {
       this.escolas = data;
-      console.log(this.escolas);
+      this.pageSlice = this.escolas.slice(0, 10);
+    })
+  }
+
+  onPageChange(event: PageEvent) {
+    const paginationOptions = {
+      currentPage: event.pageIndex,
+      itensPerPage: event.pageSize,
+    }
+    console.log(event);
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.escolas.length){
+      endIndex = this.escolas.length;
+    }
+    this.pageSlice = this.escolas.slice(startIndex, endIndex);
+  }
+
+  addOrEditSchool(escola: EscolasModel): void {
+    const dialogRef = this.dialog.open(EscolaAdicionarOuEditarComponent, {
+      width: '70%',
+      data: escola,
+    })
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.listSchools();
+    })
+  }
+
+  deleteSchools(escola: EscolasModel): void {
+    const dialogRef = this.dialog.open(EscolaExcluirComponent, {
+      width: '30%',
+      data: escola,
+    })
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.listSchools();
     })
   }
 

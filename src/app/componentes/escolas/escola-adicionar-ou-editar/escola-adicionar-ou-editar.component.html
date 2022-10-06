@@ -1,38 +1,38 @@
 
 <div class="dialog-header">
-  <h1 mat-dialog-title>Adicionar Escola</h1>
+  <h1 *ngIf="editMode" mat-dialog-title>Editar Escola</h1>
+  <h1 *ngIf="!editMode" mat-dialog-title>Adicionar Escola</h1>
   <hr>
 </div>
 
 <div mat-dialog-content>
   <div class="inputs">
     <mat-form-field appearance="outline" class="input">
-      <mat-label>Nome da Escola</mat-label>
-      <input matInput placeholder="Placeholder">
+      <mat-label>Escola</mat-label>
+      <input matInput placeholder="Placeholder" name="schoolName" [(ngModel)]="data.school.name">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="input">
-      <mat-label>Nome da Unidade</mat-label>
-      <input matInput placeholder="Placeholder">
+      <mat-label>Unidade Escolar</mat-label>
+      <input matInput placeholder="Placeholder" name="unitName" [(ngModel)]="data.name">
     </mat-form-field>
   </div>
 
   <div class="inputs">
     <mat-form-field appearance="outline" class="input">
       <mat-label>Endereço da Unidade</mat-label>
-      <input matInput placeholder="Placeholder">
+      <input matInput placeholder="Placeholder" name="address" [(ngModel)]="data.address">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="input">
-      <mat-label>Telefone da Unidae</mat-label>
-      <input matInput placeholder="Placeholder">
+      <mat-label>Telefone da Unidade</mat-label>
+        <input matInput placeholder="Placeholder" name="phone" [(ngModel)]="data.phone.phone">
     </mat-form-field>
   </div>
-
 </div>
 
 <div  class="dialog-footer">
   <hr>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial color="primary">Adicionar</button>
+  <button mat-button [mat-dialog-close]="data" color="primary">Adicionar</button>
 </div>
