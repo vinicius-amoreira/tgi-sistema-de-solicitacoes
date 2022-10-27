@@ -10,15 +10,20 @@
       <h1>Login</h1>
     </div>
 
-    <form class="example-form">
+    <form class="example-form" [formGroup]="form">
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>E-mail:</mat-label>
-        <input type="email" matInput placeholder="Ex. email@gmail.com">
+        <input type="email" matInput placeholder="Ex. email@gmail.com" formControlName="email">
       </mat-form-field>
+
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Senha:</mat-label>
-        <input type="password" matInput>
+        <input type="password" matInput formControlName="password">
       </mat-form-field>
+
+      <div class="buttons">
+        <button type="submit" mat-stroked-button color="primary" (click)="makeLogin()" [disabled]="form.invalid">Login</button>
+      </div>
     </form>
 
   </mat-card>

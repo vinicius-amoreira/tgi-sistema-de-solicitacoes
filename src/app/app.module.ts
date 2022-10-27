@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxWebstorageModule } from "ngx-webstorage";
+import { AuthModule } from './auth/auth.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
@@ -16,13 +21,13 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatInputModule } from "@angular/material/input";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
-import { AppRoutingModule } from './app-routing.module';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { HistoricoComponent } from './componentes/historico/historico.component';
 import { SidenavComponent } from './componentes/sidenav/sidenav.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MainComponent } from './componentes/main/main.component';
 import { ProdutosComponent } from './componentes/produtos/produtos.component';
 import { ProdutoAdicionarOuEditarComponent } from './componentes/produtos/produto-adicionar-ou-editar/produto-adicionar-ou-editar.component';
@@ -33,6 +38,8 @@ import { EscolaExcluirComponent } from './componentes/escolas/escola-excluir/esc
 import { RequestsComponent } from './componentes/requests/requests.component';
 import { AddRequestComponent } from './componentes/requests/add-request/add-request.component';
 import { LoginComponent } from './componentes/login/login.component';
+
+
 
 @NgModule({
   declarations: [
@@ -55,6 +62,11 @@ import { LoginComponent } from './componentes/login/login.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AuthModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxWebstorageModule.forRoot(),
+    HttpClientModule,
     MatListModule,
     MatIconModule,
     MatButtonModule,
