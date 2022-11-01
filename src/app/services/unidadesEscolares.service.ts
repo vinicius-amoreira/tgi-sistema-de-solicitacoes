@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {EMPTY, Observable} from "rxjs";
 import {catchError, map} from "rxjs/operators"
-import {EscolasModel} from "../models/escolas.model";
+import {UnidadeEscolarModel} from "../models/escolas.model";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment.prod";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -9,9 +9,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 @Injectable({
   providedIn: 'root'
 })
-export class EscolasService {
+export class UnidadesEscolaresService {
   baseApiUrl = environment.apiUrl
-  apiUrl = `${this.baseApiUrl}/schools`
+  apiUrl = `${this.baseApiUrl}/schools/unit`
 
   constructor(
     private http: HttpClient,
@@ -27,31 +27,31 @@ export class EscolasService {
     });
   }
 
-  create(payload: EscolasModel): Observable<EscolasModel> {
-    return this.http.post<EscolasModel>(this.apiUrl, payload).pipe(
+  create(payload: UnidadeEscolarModel): Observable<UnidadeEscolarModel> {
+    return this.http.post<UnidadeEscolarModel>(this.apiUrl, payload).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );
   }
 
-  read(): Observable<EscolasModel[]> {
-    return this.http.get<EscolasModel[]>(this.apiUrl).pipe(
+  read(): Observable<UnidadeEscolarModel[]> {
+    return this.http.get<UnidadeEscolarModel[]>(this.apiUrl).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );
   }
 
-  update(payload: EscolasModel): Observable<EscolasModel> {
+  update(payload: UnidadeEscolarModel): Observable<UnidadeEscolarModel> {
     const schoolIdUrl = `${this.apiUrl}/${payload.id}`;
-    return this.http.put<EscolasModel>(schoolIdUrl, payload).pipe(
+    return this.http.put<UnidadeEscolarModel>(schoolIdUrl, payload).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );
   }
 
-  delete(id: number): Observable<EscolasModel> {
+  delete(id: number): Observable<UnidadeEscolarModel> {
     const schoolIdUrl = `${this.apiUrl}/${id}`;
-    return this.http.delete<EscolasModel>(schoolIdUrl).pipe(
+    return this.http.delete<UnidadeEscolarModel>(schoolIdUrl).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );

@@ -1,0 +1,19 @@
+<table>
+  <thead>
+  <th>Produto</th>
+  <th style="text-align: center">Quantidade</th>
+  </thead>
+
+  <tbody *ngFor="let item of data.requestItems">
+    <td>{{item.material.name}}</td>
+    <td style="text-align: center">{{item.quantity}}</td>
+  </tbody>
+</table>
+
+<button
+  style="float: right; margin-top: 1em"
+  mat-raised-button
+  (click)="dialogRef.close()"
+>
+  Fechar
+</button>

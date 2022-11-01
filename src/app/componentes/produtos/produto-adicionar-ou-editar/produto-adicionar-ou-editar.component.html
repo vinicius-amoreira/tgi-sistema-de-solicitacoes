@@ -1,6 +1,7 @@
 
 <div class="dialog-header">
-  <h1 mat-dialog-title>Adicionar Produto</h1>
+  <h1 *ngIf="editMode" mat-dialog-title>Editar Produto</h1>
+  <h1 *ngIf="!editMode" mat-dialog-title>Adicionar Produto</h1>
   <hr>
 </div>
 
@@ -8,24 +9,33 @@
   <div class="inputs">
     <mat-form-field appearance="outline" class="input">
       <mat-label>Nome do Produto</mat-label>
-      <input matInput placeholder="Placeholder">
+      <input matInput placeholder="Placeholder" name="name" [(ngModel)]="data.name">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="input">
-      <mat-label>Quantidade</mat-label>
-      <input matInput placeholder="Placeholder">
+      <mat-label>Unidade de medida</mat-label>
+      <mat-select [(value)]="data.unit.id">
+        <mat-option *ngFor="let unit of unities" [value]="unit.id">
+          {{ unit.unit }} ({{ unit.description }})
+        </mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
 
   <div class="inputs">
     <mat-form-field appearance="outline" class="input">
-      <mat-label>Entrada</mat-label>
-      <input matInput placeholder="Placeholder">
+      <mat-label>Descrição</mat-label>
+      <input matInput placeholder="Placeholder" name="description" [(ngModel)]="data.description">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="input">
-      <mat-label>Saida</mat-label>
-      <input matInput placeholder="Placeholder">
+      <mat-label>Quantidade</mat-label>
+      <input type="number" min="1" matInput placeholder="Placeholder" name="quantity" [(ngModel)]="data.stock.quantity">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Quantidade mínima</mat-label>
+      <input type="number" min="0" matInput placeholder="Insira uma quantidade mínima a ser notificada" [(ngModel)]="data.stock.quantity_min">
     </mat-form-field>
   </div>
 
@@ -34,5 +44,5 @@
 <div  class="dialog-footer">
   <hr>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial color="primary">Adicionar</button>
+  <button mat-button [mat-dialog-close]="data" color="primary" (click)="createOrEditProduct(data)">Adicionar</button>
 </div>
