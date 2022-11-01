@@ -45,6 +45,7 @@ import { UnidadeEscolarAdicionarOuEditarComponent } from './componentes/escolas/
 import { UnidadeEscolarExcluirComponent } from './componentes/escolas/unidade-escolar-excluir/unidade-escolar-excluir.component';
 import { CriarSolicitacaoComponent } from './componentes/historico/criar-solicitacao/criar-solicitacao.component';
 import { VisualizarSolicitacaoComponent } from './componentes/historico/visualizar-solicitacao/visualizar-solicitacao.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 @NgModule({
   declarations: [
