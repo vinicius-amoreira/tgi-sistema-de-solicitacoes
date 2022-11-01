@@ -1,8 +1,9 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Login } from '../models/login.model';
-import { environment } from './../../environments/environment';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +25,11 @@ export class AuthService {
   }
 
   async authUser(login: Login): Promise<boolean> {
-    // const result = await this.http.post<any>(`${environment.postLogin}`, login).toPromise();
-    // if (result && result.data.token) {
-    //   localStorage.setItem('token', result.data.token);
-    //   return (true);
-    // }
+    const result = await this.http.post<any>(`${environment.postLogin}`, login).toPromise();
+    if (result && result.token) {
+      localStorage.setItem('token', result.token);
+      return (true);
+    }
 
     return false;
   }

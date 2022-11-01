@@ -44,10 +44,10 @@ export class EscolasComponent implements OnInit {
     // public vehiclesService: VehiclesService,
     ) {
       // this.vehiclesService.getElements()
-      //   .subscribe((data: any) => {
-        //     this.dataSource = data.data;
-        //   });
-      }
+    //   .subscribe((data: any) => {
+      //     this.dataSource = data.data;
+      //   });
+  }
 
       ngOnInit(): void {
         this.listSchools();

@@ -1,8 +1,5 @@
 export const environment = {
   production: false,
-  postLogin: '',
-  api: '',
-  businessApp: '',
-  company: '',
-  refresh: '-'
+  postLogin: 'http://localhost:3333/users/auth/sessions',
+  api: 'http://localhost:3333'
 };
