@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from "@angular/common/http";
+
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxWebstorageModule } from "ngx-webstorage";
+import { AuthModule } from './auth/auth.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
@@ -18,13 +23,15 @@ import { MatNativeDateModule } from "@angular/material/core";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatInputModule } from "@angular/material/input";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
-import { AppRoutingModule } from './app-routing.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from "@angular/material/select";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { HistoricoComponent } from './componentes/historico/historico.component';
 import { SidenavComponent } from './componentes/sidenav/sidenav.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MainComponent } from './componentes/main/main.component';
 import { ProdutosComponent } from './componentes/produtos/produtos.component';
 import { ProdutoAdicionarOuEditarComponent } from './componentes/produtos/produto-adicionar-ou-editar/produto-adicionar-ou-editar.component';
@@ -34,14 +41,10 @@ import { EscolaAdicionarOuEditarComponent } from './componentes/escolas/escola-a
 import { EscolaExcluirComponent } from './componentes/escolas/escola-excluir/escola-excluir.component';
 import { RequestsComponent } from './componentes/requests/requests.component';
 import { AddRequestComponent } from './componentes/requests/add-request/add-request.component';
-import {MatPaginatorModule} from "@angular/material/paginator";
-import {FormsModule} from "@angular/forms";
-import {MatSelectModule} from "@angular/material/select";
 import { UnidadeEscolarAdicionarOuEditarComponent } from './componentes/escolas/unidade-escolar-adicionar-ou-editar/unidade-escolar-adicionar-ou-editar.component';
 import { UnidadeEscolarExcluirComponent } from './componentes/escolas/unidade-escolar-excluir/unidade-escolar-excluir.component';
 import { CriarSolicitacaoComponent } from './componentes/historico/criar-solicitacao/criar-solicitacao.component';
 import { VisualizarSolicitacaoComponent } from './componentes/historico/visualizar-solicitacao/visualizar-solicitacao.component';
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [
@@ -62,12 +65,18 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     UnidadeEscolarExcluirComponent,
     CriarSolicitacaoComponent,
     VisualizarSolicitacaoComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AuthModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxWebstorageModule.forRoot(),
+    HttpClientModule,
     MatListModule,
     MatSnackBarModule,
     MatIconModule,
