@@ -55,16 +55,16 @@ const routes: Routes = [
          token: 'token'
         }
       },
-      {
-        path: '**',
-        redirectTo: '/dashboard',
-        pathMatch: 'full'
-      },
     ]
   },
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/login',
+    pathMatch: 'full'
   },
   ...LoginRoutes
 ];

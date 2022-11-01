@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       if (this.form.valid) {
         await
           this.authService.authUser(this.form.value)
-          this.router.navigate(["/dashboard"]);
+          location.reload();
       }
     } catch (error) {
       alert('Email ou Senha Incorretos! [Tente Novamente]')

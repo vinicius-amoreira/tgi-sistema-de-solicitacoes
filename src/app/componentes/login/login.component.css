@@ -30,12 +30,19 @@ h1 {
 .example-full-width {
   width: 100%;
   margin-bottom: 3vh;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }
 
+.buttons {
+  text-align: end;
+}
+
+.button-submit {
+  font-size: 18px;
+}
 
 .chart-image {
   position: absolute;

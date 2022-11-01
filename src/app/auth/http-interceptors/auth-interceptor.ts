@@ -10,26 +10,23 @@ export class AuthInterceptor implements AuthInterceptor {
 
   constructor( private authService: AuthService) {}
 
-  // intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-  //   const token = this.authService.getAuthorizationToken();
-  //   let request: HttpRequest<any> = req;
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const token = this.authService.getAuthorizationToken();
+    let request: HttpRequest<any> = req;
 
-  //   if (token && !this.authService.isTokenExperid(token)) {
-  //     request = req.clone({
-  //       headers: new HttpHeaders({
-  //         'business-app': environment.businessApp,
-  //         'company': environment.company,
-  //         'firebase': token,
-  //         'refresh': environment.refresh
-  //       })
-  //     });
-  //   }
+    if (token && !this.authService.isTokenExperid(token)) {
+      request = req.clone({
+        headers: new HttpHeaders({
+          'token': token,
+        })
+      });
+    }
 
-  //   return next.handle(request)
-  //     .pipe(
-  //       catchError(this.handleError)
-  //     );
-  // }
+    return next.handle(request)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

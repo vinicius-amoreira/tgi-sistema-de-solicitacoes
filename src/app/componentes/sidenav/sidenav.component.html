@@ -20,6 +20,10 @@
         <mat-icon mat-list-icon>emoji_people</mat-icon>
         <span *ngIf="isExpanded">Solicitações</span>
       </mat-list-item>
+      <mat-list-item (click)="onLogout()">
+        <mat-icon mat-list-icon>logout</mat-icon>
+        <span *ngIf="isExpanded">Sair</span>
+      </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
 
