@@ -5,7 +5,7 @@ import { ProdutosComponent } from "./componentes/produtos/produtos.component";
 import { HistoricoComponent } from "./componentes/historico/historico.component";
 import { MainComponent } from "./componentes/main/main.component";
 import { EscolasComponent } from "./componentes/escolas/escolas.component";
-import { RequestsComponent } from './componentes/requests/requests.component';
+import {UnidadesDeMedidaComponent} from "./componentes/unidades-de-medida/unidades-de-medida.component";
 
 const routes: Routes = [
   {
@@ -25,12 +25,12 @@ const routes: Routes = [
         component: EscolasComponent,
       },
       {
-        path: 'requests',
-        component: RequestsComponent,
+        path: 'solicitacoes',
+        component: HistoricoComponent,
       },
       {
-        path: 'historico',
-        component: HistoricoComponent,
+        path: 'unidades-de-medida',
+        component: UnidadesDeMedidaComponent,
       },
       {
         path: '**',

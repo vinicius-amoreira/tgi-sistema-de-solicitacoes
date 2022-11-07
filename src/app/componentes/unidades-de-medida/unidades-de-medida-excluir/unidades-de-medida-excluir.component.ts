@@ -5,15 +5,15 @@ import {ProdutosService} from "../../../services/produtos.service";
 
 @Component({
   selector: 'app-unidades-de-medida-excluir',
-  templateUrl: './produto-excluir.component.html',
-  styleUrls: ['./produto-excluir.component.css']
+  templateUrl: './unidades-de-medida-excluir.component.html',
+  styleUrls: ['./unidades-de-medida-excluir.component.css']
 })
-export class ExcluirProdutoComponent implements OnInit {
+export class ExcluirUnidadeDeMedidaComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: ProdutosModel,
-    public dialogRef: MatDialogRef<ExcluirProdutoComponent>,
+    public dialogRef: MatDialogRef<ExcluirUnidadeDeMedidaComponent>,
     private produtosService: ProdutosService,
   ) { }
 
@@ -25,10 +25,11 @@ export class ExcluirProdutoComponent implements OnInit {
   }
 
   deleteProduct(payload: ProdutosModel): void {
-    this.produtosService.delete(payload.id!).subscribe(() => {
+    this.produtosService.deleteMeasurementUnit(payload.id!).subscribe(() => {
       console.log('foi')
     }, () => {
       console.log('nao foi')
     })
+    this.dialogRef.close();
   }
 }

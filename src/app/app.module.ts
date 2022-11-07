@@ -32,16 +32,22 @@ import { ExcluirProdutoComponent } from './componentes/produtos/produto-excluir/
 import { EscolasComponent } from './componentes/escolas/escolas.component';
 import { EscolaAdicionarOuEditarComponent } from './componentes/escolas/escola-adicionar-ou-editar/escola-adicionar-ou-editar.component';
 import { EscolaExcluirComponent } from './componentes/escolas/escola-excluir/escola-excluir.component';
-import { RequestsComponent } from './componentes/requests/requests.component';
-import { AddRequestComponent } from './componentes/requests/add-request/add-request.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import { UnidadeEscolarAdicionarOuEditarComponent } from './componentes/escolas/unidade-escolar-adicionar-ou-editar/unidade-escolar-adicionar-ou-editar.component';
 import { UnidadeEscolarExcluirComponent } from './componentes/escolas/unidade-escolar-excluir/unidade-escolar-excluir.component';
 import { CriarSolicitacaoComponent } from './componentes/historico/criar-solicitacao/criar-solicitacao.component';
 import { VisualizarSolicitacaoComponent } from './componentes/historico/visualizar-solicitacao/visualizar-solicitacao.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {UnidadesDeMedidaComponent} from "./componentes/unidades-de-medida/unidades-de-medida.component";
+import {
+  UnidadesDeMedidaAdicionarOuEditarComponent
+} from "./componentes/unidades-de-medida/unidades-de-medida-adicionar-ou-editar/unidades-de-medida-adicionar-ou-editar.component";
+import {
+  ExcluirUnidadeDeMedidaComponent
+} from "./componentes/unidades-de-medida/unidades-de-medida-excluir/unidades-de-medida-excluir.component";
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -56,12 +62,13 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     EscolasComponent,
     EscolaAdicionarOuEditarComponent,
     EscolaExcluirComponent,
-    RequestsComponent,
-    AddRequestComponent,
     UnidadeEscolarAdicionarOuEditarComponent,
     UnidadeEscolarExcluirComponent,
     CriarSolicitacaoComponent,
     VisualizarSolicitacaoComponent,
+    UnidadesDeMedidaComponent,
+    UnidadesDeMedidaAdicionarOuEditarComponent,
+    ExcluirUnidadeDeMedidaComponent,
   ],
   imports: [
     HttpClientModule,
@@ -88,6 +95,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     FormsModule,
     MatSelectModule,
     MatAutocompleteModule,
+    ReactiveFormsModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

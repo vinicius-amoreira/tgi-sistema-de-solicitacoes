@@ -1,11 +1,12 @@
 import { Component, OnInit,  ViewChild } from '@angular/core';
-import { MatTable } from '@angular/material/table';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ProdutosModel } from 'src/app/models/produtos.model';
 import { ProdutoAdicionarOuEditarComponent } from './produto-adicionar-ou-editar/produto-adicionar-ou-editar.component';
 import { ExcluirProdutoComponent } from './produto-excluir/produto-excluir.component';
 import {ProdutosService} from "../../services/produtos.service";
-import {PageEvent} from "@angular/material/paginator";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-produtos',
@@ -13,12 +14,12 @@ import {PageEvent} from "@angular/material/paginator";
   styleUrls: ['./produtos.component.css'],
 })
 export class ProdutosComponent implements OnInit {
-  @ViewChild(MatTable)
-  table!: MatTable<any>
+  @ViewChild(MatTable) table!: MatTable<any>
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   displayedColumns: string[] = ['id', 'nome', 'descricao', 'quantidade', 'acoes'];
-  dataSource: ProdutosModel[];
   produtos: ProdutosModel[] = [];
-  pageSlice: ProdutosModel[] = [];
+  dataSource!: MatTableDataSource<ProdutosModel[]>
   produto: ProdutosModel = {
     name: '',
     description: '',
@@ -36,23 +37,18 @@ export class ProdutosComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private produtosService: ProdutosService,
-    // public vehiclesService: VehiclesService,
-    ) {
-      // this.vehiclesService.getElements()
-      //   .subscribe((data: any) => {
-        //     this.dataSource = data.data;
-        //   });
-        this.dataSource = this.produtos;
-      }
+    ) { }
 
-      ngOnInit(): void {
-        this.listProducts();
-      }
+  ngOnInit(): void {
+    this.listProducts();
+  }
 
   listProducts(): void {
     this.produtosService.read().subscribe((data) => {
       this.produtos = data;
-      this.pageSlice = this.produtos.slice(0, 25);
+      this.dataSource = new MatTableDataSource(data) as unknown as MatTableDataSource<any>;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
   }
 
@@ -82,12 +78,8 @@ export class ProdutosComponent implements OnInit {
     });
   }
 
-  onPageChange(event: PageEvent) {
-    const startIndex = event.pageIndex * event.pageSize;
-    let endIndex = startIndex + event.pageSize;
-    if (endIndex > this.produtos.length){
-      endIndex = this.produtos.length;
-    }
-    this.pageSlice = this.produtos.slice(startIndex, endIndex);
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
