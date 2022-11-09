@@ -8,7 +8,6 @@ import { HistoricoComponent } from "./componentes/historico/historico.component"
 import { MainComponent } from "./componentes/main/main.component";
 import { EscolasComponent } from "./componentes/escolas/escolas.component";
 import { UnidadesDeMedidaComponent } from "./componentes/unidades-de-medida/unidades-de-medida.component";
-import { RequestsComponent } from './componentes/requests/requests.component';
 import { LoginComponent } from './componentes/login/login.component';
 
 const routes: Routes = [
@@ -43,25 +42,15 @@ const routes: Routes = [
       {
         path: 'solicitacoes',
         component: HistoricoComponent,
+        data: {
+          token: 'token'
+        }
       },
       {
         path: 'unidades-de-medida',
         component: UnidadesDeMedidaComponent,
-      },
-      {
-        path: 'requests',
-        component: RequestsComponent,
-        canActivate: [AuthGuard],
         data: {
-         token: 'token'
-        }
-      },
-      {
-        path: 'historico',
-        component: HistoricoComponent,
-        canActivate: [AuthGuard],
-        data: {
-         token: 'token'
+          token: 'token'
         }
       },
     ]

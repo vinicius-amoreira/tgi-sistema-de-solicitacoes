@@ -41,8 +41,6 @@ import { ExcluirProdutoComponent } from './componentes/produtos/produto-excluir/
 import { EscolasComponent } from './componentes/escolas/escolas.component';
 import { EscolaAdicionarOuEditarComponent } from './componentes/escolas/escola-adicionar-ou-editar/escola-adicionar-ou-editar.component';
 import { EscolaExcluirComponent } from './componentes/escolas/escola-excluir/escola-excluir.component';
-import { RequestsComponent } from './componentes/requests/requests.component';
-import { AddRequestComponent } from './componentes/requests/add-request/add-request.component';
 
 import { UnidadeEscolarAdicionarOuEditarComponent } from './componentes/escolas/unidade-escolar-adicionar-ou-editar/unidade-escolar-adicionar-ou-editar.component';
 import { UnidadeEscolarExcluirComponent } from './componentes/escolas/unidade-escolar-excluir/unidade-escolar-excluir.component';
