@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ProdutosModel} from "../../models/produtos.model";
-import {MatTable} from "@angular/material/table";
+import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {SolicitacoesModel} from "../../models/solicitacoes.model";
 import {RequestsService} from "../../services/requests.service";
 import {MatDialog} from "@angular/material/dialog";
 import {CriarSolicitacaoComponent} from "./criar-solicitacao/criar-solicitacao.component";
 import {VisualizarSolicitacaoComponent} from "./visualizar-solicitacao/visualizar-solicitacao.component";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 
 
 @Component({
@@ -14,10 +16,11 @@ import {VisualizarSolicitacaoComponent} from "./visualizar-solicitacao/visualiza
   styleUrls: ['./historico.component.css'],
 })
 export class HistoricoComponent implements OnInit {
-
-  table!: MatTable<any>
+  @ViewChild(MatTable) table!: MatTable<any>
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   displayedColumns: string[] = ['acao', 'escola', 'data'];
-  dataSource: any[] = []
+  dataSource!: MatTableDataSource<SolicitacoesModel[]>
   solicitacoes: SolicitacoesModel[] = [];
   solicitacao: SolicitacoesModel = {} as SolicitacoesModel;
 
@@ -28,13 +31,14 @@ export class HistoricoComponent implements OnInit {
 
   ngOnInit(): void {
     this.listRequests();
-    this.dataSource = [];
   }
 
   listRequests(): void {
     this.requestsService.read().subscribe((data) => {
       this.solicitacoes = data;
-      console.log(this.solicitacoes);
+      this.dataSource = new MatTableDataSource(data) as unknown as MatTableDataSource<any>;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
   }
 
@@ -45,7 +49,7 @@ export class HistoricoComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(() => {
-
+      this.listRequests();
     })
   }
 
@@ -54,9 +58,13 @@ export class HistoricoComponent implements OnInit {
       width: '70%',
       data: solicitacao,
     })
-
     dialogRef.afterClosed().subscribe(() => {
 
     })
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

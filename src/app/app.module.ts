@@ -27,8 +27,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from "@angular/material/select";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatSortModule } from "@angular/material/sort";
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './componentes/login/login.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { HistoricoComponent } from './componentes/historico/historico.component';
 import { SidenavComponent } from './componentes/sidenav/sidenav.component';
@@ -41,11 +43,19 @@ import { EscolaAdicionarOuEditarComponent } from './componentes/escolas/escola-a
 import { EscolaExcluirComponent } from './componentes/escolas/escola-excluir/escola-excluir.component';
 import { RequestsComponent } from './componentes/requests/requests.component';
 import { AddRequestComponent } from './componentes/requests/add-request/add-request.component';
+
 import { UnidadeEscolarAdicionarOuEditarComponent } from './componentes/escolas/unidade-escolar-adicionar-ou-editar/unidade-escolar-adicionar-ou-editar.component';
 import { UnidadeEscolarExcluirComponent } from './componentes/escolas/unidade-escolar-excluir/unidade-escolar-excluir.component';
 import { CriarSolicitacaoComponent } from './componentes/historico/criar-solicitacao/criar-solicitacao.component';
 import { VisualizarSolicitacaoComponent } from './componentes/historico/visualizar-solicitacao/visualizar-solicitacao.component';
-import { LoginComponent } from './componentes/login/login.component';
+import { UnidadesDeMedidaComponent } from "./componentes/unidades-de-medida/unidades-de-medida.component";
+import {
+  UnidadesDeMedidaAdicionarOuEditarComponent
+} from "./componentes/unidades-de-medida/unidades-de-medida-adicionar-ou-editar/unidades-de-medida-adicionar-ou-editar.component";
+import {
+  ExcluirUnidadeDeMedidaComponent
+} from "./componentes/unidades-de-medida/unidades-de-medida-excluir/unidades-de-medida-excluir.component";
+
 
 @NgModule({
   declarations: [
@@ -60,12 +70,13 @@ import { LoginComponent } from './componentes/login/login.component';
     EscolasComponent,
     EscolaAdicionarOuEditarComponent,
     EscolaExcluirComponent,
-    RequestsComponent,
-    AddRequestComponent,
     UnidadeEscolarAdicionarOuEditarComponent,
     UnidadeEscolarExcluirComponent,
     CriarSolicitacaoComponent,
     VisualizarSolicitacaoComponent,
+    UnidadesDeMedidaComponent,
+    UnidadesDeMedidaAdicionarOuEditarComponent,
+    ExcluirUnidadeDeMedidaComponent,
     LoginComponent
   ],
   imports: [
@@ -98,6 +109,8 @@ import { LoginComponent } from './componentes/login/login.component';
     FormsModule,
     MatSelectModule,
     MatAutocompleteModule,
+    ReactiveFormsModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

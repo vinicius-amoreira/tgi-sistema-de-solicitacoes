@@ -1,9 +1,56 @@
-<mat-form-field appearance="outline" class="input">
-  <mat-label>Produtos</mat-label>
-  <input matInput placeholder="Placeholder" [matAutocomplete]="produto" name="product" [(ngModel)]="data.requestItems">
-  <mat-autocomplete #produto="matAutocomplete">
-    <mat-option *ngFor="let product of produtos" [value]="product.name">
-      {{product.name}}
-    </mat-option>
-  </mat-autocomplete>
-</mat-form-field>
+<div class="dialog-header">
+  <h1 mat-dialog-title>Criar Nova Solicitação</h1>
+  <hr>
+</div>
+
+<div mat-dialog-content>
+  <form [formGroup]="requestsForm">
+    <div class="inputs">
+      <mat-form-field appearance="outline" class="input" formGroupName="schoolUnit">
+        <mat-select placeholder="Selecione uma Unidade Escolar" formControlName="id">
+          <mat-option *ngFor="let schoolUnit of unidadesEscolares" [value]="schoolUnit.id">
+            {{schoolUnit.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input" formGroupName="requestAction">
+        <mat-select placeholder="Selecione uma Ação" formControlName="id">
+          <mat-option *ngFor="let action of acoes" [value]="action.id">
+            {{action.action}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div formArrayName="requestItems" *ngFor="let requestItem of requestItem.controls; let i = index">
+      <div class="inputs"  [formGroupName]="i">
+        <mat-form-field appearance="outline" class="input" formGroupName="material">
+          <mat-select placeholder="Selecione um Produto" formControlName="id">
+            <mat-option *ngFor="let product of produtos" [value]="product.id">
+              {{ product.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="input">
+          <mat-label>Quantidade</mat-label>
+          <input type="number" matInput placeholder="Selecione um Produto" formControlName="quantity">
+        </mat-form-field>
+        <button class="float-left" mat-icon-button color="primary" aria-label="Remove/clear"
+                (click)="removeOrClearRequestItem(1)" matTooltip="Remove">
+          <mat-icon>highlight_off</mat-icon>
+        </button>
+        <button class="float-left" mat-icon-button color="primary" aria-label="Add"
+                (click)="addRequestItem()" matTooltip="Add">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="dialog-footer">
+  <hr>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="data" color="primary" (click)="saveRequestItem()">Adicionar</button>
+</div>

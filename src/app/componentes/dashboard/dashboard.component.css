@@ -1,8 +1,4 @@
 .align-graphs {
   display: flex;
-  justify-content: space-between;
-}
-
-.products-graph {
- padding-right: 2vw
+  justify-content: center;
 }

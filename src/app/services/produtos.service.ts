@@ -11,8 +11,10 @@ import {UnidadesDeMedidaModel} from "../models/unidades-de-medida.model";
   providedIn: 'root'
 })
 export class ProdutosService {
-  baseApiUrl = environment.apiUrl
-  apiUrl = `${this.baseApiUrl}/materials`
+  baseApiUrl = environment.apiUrl;
+  apiUrl = `${this.baseApiUrl}/materials`;
+  unitsUrl = `${this.baseApiUrl}/materials/unit`;
+  lowStockUrl = `${this.apiUrl}/stock/low`;
 
   constructor(
     private http: HttpClient,
@@ -42,9 +44,39 @@ export class ProdutosService {
     );
   }
 
+  readLowStock(): Observable<ProdutosModel[]> {
+    return this.http.get<ProdutosModel[]>(this.lowStockUrl).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e))
+    );
+  }
+
   readMeasurementUnities(): Observable<UnidadesDeMedidaModel[]> {
-    const unitiesUrl = `${this.apiUrl}/unit`
+    const unitiesUrl = this.unitsUrl
     return this.http.get<UnidadesDeMedidaModel[]>(unitiesUrl).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e))
+    );
+  }
+
+  createMeasurementUnit(payload: UnidadesDeMedidaModel): Observable<UnidadesDeMedidaModel> {
+    return this.http.post<UnidadesDeMedidaModel>(this.unitsUrl, payload).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e))
+    );
+  }
+
+  updateMeasurementUnit(payload: UnidadesDeMedidaModel): Observable<UnidadesDeMedidaModel> {
+    const productIdUrl = `${this.unitsUrl}/${payload.id}`;
+    return this.http.put<UnidadesDeMedidaModel>(productIdUrl, payload).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e))
+    );
+  }
+
+  deleteMeasurementUnit(id: number): Observable<ProdutosModel> {
+    const productIdUrl = `${this.unitsUrl}/${id}`;
+    return this.http.delete<ProdutosModel>(productIdUrl).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );

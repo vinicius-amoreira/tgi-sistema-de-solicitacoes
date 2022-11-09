@@ -13,7 +13,7 @@
             <form class="example-form">
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Busca Avançada</mat-label>
-                <input type="text" matInput placeholder="digite a coluna ou o item">
+                <input (keyup)="applyFilterSchools($event)" type="text" matInput placeholder="digite a coluna ou o item">
                 <mat-icon matSuffix>search</mat-icon>
               </mat-form-field>
             </form>
@@ -27,7 +27,7 @@
         </div>
 
         <div class="align-table">
-          <table mat-table [dataSource]="escolas" class="mat-elevation-z8">
+          <table mat-table [dataSource]="schoolsDataSource" class="mat-elevation-z8">
 
             <ng-container matColumnDef="nome">
               <th mat-header-cell *matHeaderCellDef> Escola </th>
@@ -51,6 +51,7 @@
           </table>
         </div>
         <mat-paginator
+          #schools
           class="mat-elevation-z8"
           [length]="escolas.length"
           [pageSize]="10"
@@ -67,7 +68,7 @@
             <form class="example-form">
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Busca Avançada</mat-label>
-                <input type="text" matInput placeholder="digite a coluna ou o item">
+                <input (keyup)="applyFilterSchoolUnits($event)" type="text" matInput placeholder="digite a coluna ou o item">
                 <mat-icon matSuffix>search</mat-icon>
               </mat-form-field>
             </form>
@@ -81,7 +82,7 @@
         </div>
 
         <div class="align-table">
-          <table mat-table [dataSource]="unidadesEscolares" class="mat-elevation-z8">
+          <table mat-table [dataSource]="schoolUnitsDataSource" class="mat-elevation-z8">
 
             <ng-container matColumnDef="nome">
               <th mat-header-cell *matHeaderCellDef> Escola </th>
@@ -101,7 +102,7 @@
             <ng-container matColumnDef="telefone">
               <th mat-header-cell *matHeaderCellDef> Telefones da unidade </th>
               <td mat-cell *matCellDef="let element">
-                <span *ngFor="let phone of element.phone">{{ phone.phone }}<br></span>
+                <span *ngFor="let phone of element.phone">{{ phone.description }} {{ phone.phone }}<br></span>
               </td>
             </ng-container>
 
@@ -122,8 +123,9 @@
           </table>
         </div>
         <mat-paginator
+          #schoolUnits
           class="mat-elevation-z8"
-          [length]="escolas.length"
+          [length]="unidadesEscolares.length"
           [pageSize]="10"
           [pageSizeOptions]="[10, 25, 50, 100]"
         ></mat-paginator>

@@ -17,23 +17,9 @@
       (select)="onSelect($event)"
     ></ngx-charts-bar-vertical>
   </div>
+</div>
 
-  <div class="products-graph">
-    <mat-toolbar>
-      Saída de produtos por mês
-    </mat-toolbar>
-    <ngx-charts-bar-vertical
-      [view]="view"
-      [results]="single"
-      [gradient]="gradient"
-      [xAxis]="showXAxis"
-      [yAxis]="showYAxis"
-      [legend]="showLegend"
-      [showXAxisLabel]="showXAxisLabel"
-      [showYAxisLabel]="showYAxisLabel"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
-      (select)="onSelect($event)"
-    ></ngx-charts-bar-vertical>
-  </div>
+<div>
+  <p *ngFor="let product of lowStockProducts">{{ product.description }} {{ product.stock.quantity }}</p>
+  <p *ngIf="!lowStockProducts.length">Não há produtos com baixo estoque.</p>
 </div>

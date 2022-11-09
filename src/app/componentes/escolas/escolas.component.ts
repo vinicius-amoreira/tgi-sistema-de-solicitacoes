@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTable } from '@angular/material/table';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
 import {EscolasModel, UnidadeEscolarModel} from 'src/app/models/escolas.model';
 import { EscolaAdicionarOuEditarComponent } from './escola-adicionar-ou-editar/escola-adicionar-ou-editar.component';
 import { EscolaExcluirComponent } from './escola-excluir/escola-excluir.component';
 import {EscolasService} from "../../services/escolas.service";
-import {PageEvent} from "@angular/material/paginator";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {UnidadesEscolaresService} from "../../services/unidadesEscolares.service";
 import {
   UnidadeEscolarAdicionarOuEditarComponent
@@ -19,8 +19,9 @@ import {UnidadeEscolarExcluirComponent} from "./unidade-escolar-excluir/unidade-
   styleUrls: ['./escolas.component.css']
 })
 export class EscolasComponent implements OnInit {
-  @ViewChild(MatTable)
-  table!: MatTable<any>
+  @ViewChild(MatTable) table!: MatTable<any>
+  @ViewChild('schools') schoolsPaginator!: MatPaginator;
+  @ViewChild('schoolUnits') schoolUnitsPaginator!: MatPaginator;
   schoolColumns: string[] = ['nome', 'acoes'];
   schoolUnitColumns: string[] = ['nome', 'nomeUnidade', 'endereco', 'telefone', 'acoes']
   unidadesEscolares: UnidadeEscolarModel[] = [];
@@ -32,52 +33,37 @@ export class EscolasComponent implements OnInit {
       name: ''
     },
   }
+  schoolUnitsDataSource!: MatTableDataSource<UnidadeEscolarModel[]>
   escolas: EscolasModel[] = [];
-  escola: EscolasModel = {
-    name: '',
-  }
+  escola: EscolasModel = {} as EscolasModel;
+  schoolsDataSource!: MatTableDataSource<EscolasModel[]>
 
   constructor(
     public dialog: MatDialog,
     private escolasService: EscolasService,
     private unidadesEscolaresService: UnidadesEscolaresService,
-    // public vehiclesService: VehiclesService,
-    ) {
-      // this.vehiclesService.getElements()
-    //   .subscribe((data: any) => {
-      //     this.dataSource = data.data;
-      //   });
-  }
+    ) {}
 
-      ngOnInit(): void {
-        this.listSchools();
-        this.listSchoolsUnits();
-      }
+  ngOnInit(): void {
+    this.listSchools();
+    this.listSchoolsUnits();
+  }
 
   listSchools(): void {
     this.escolasService.read().subscribe((data) => {
       this.escolas = data;
+      this.schoolsDataSource = new MatTableDataSource(data) as unknown as MatTableDataSource<any>
+      this.schoolsDataSource.paginator = this.schoolsPaginator;
     })
   }
 
   listSchoolsUnits(): void {
     this.unidadesEscolaresService.read().subscribe((data) => {
       this.unidadesEscolares = data;
+      this.schoolUnitsDataSource = new MatTableDataSource(data) as unknown as MatTableDataSource<any>;
+      this.schoolUnitsDataSource.paginator = this.schoolUnitsPaginator;
     })
   }
-
-  // onPageChange(event: PageEvent) {
-  //   const paginationOptions = {
-  //     currentPage: event.pageIndex,
-  //     itensPerPage: event.pageSize,
-  //   }
-  //   const startIndex = event.pageIndex * event.pageSize;
-  //   let endIndex = startIndex + event.pageSize;
-  //   if (endIndex > this.escolas.length){
-  //     endIndex = this.escolas.length;
-  //   }
-  //   this.pageSlice = this.escolas.slice(startIndex, endIndex);
-  // }
 
   addSchool(escola: EscolasModel | null): void {
     console.log(escola);
@@ -128,63 +114,13 @@ export class EscolasComponent implements OnInit {
     })
   }
 
-  // addSchools(element: EscolasModel | null): void {
-  //   const dialogRef = this.dialog.open(EscolaAdicionarOuEditarComponent, {
-  //     width: '70%',
-  //     data: element === null ? {
-  //       id: '',
-  //       name: '',
-  //       unidadeName: '',
-  //       address: '',
-  //       celphone: ''
-  //
-  //     } :  {
-  //       id: element.id,
-  //       name: element.name,
-  //       unidadeName: element.unidadeName,
-  //       address: element.address,
-  //       celphone: element.celphone
-  //     }
-  //   });
-  //
-  //   // dialogRef.afterClosed().subscribe(result => {
-  //   //   if (result !== undefined) {
-  //   //     if ('id' in result) {
-  //   //       this.vehiclesService.editElements(result)
-  //   //         .subscribe((data: any) => {
-  //   //           const index = this.dataSource.findIndex(i => i.id === data.id)
-  //   //           this.dataSource[index] = data;
-  //   //           this.table.renderRows();
-  //   //         })
-  //   //     } else {
-  //   //       this.vehiclesService.createElements(result)
-  //   //       .subscribe((data: any) => {
-  //   //         this.dataSource.push(data.data);
-  //   //         this.table.renderRows();
-  //   //       });
-  //   //     }
-  //   //   }
-  //   // });
-  // }
-  //
-  // editSchools(element: EscolasModel): void {
-  //   this.addSchools(element);
-  // }
-  //
-  // deleteSchools(element: EscolasModel): void {
-  //   const dialogRef = this.dialog.open(EscolaExcluirComponent, {
-  //     width: '70%',
-  //   });
-  //
-  //   // dialogRef.afterClosed().subscribe(result => {
-  //   //   if (result !== undefined) {
-  //   //     this.vehiclesService.deleteElement(element)
-  //   //       .subscribe(() => {
-  //   //         this.dataSource = this.dataSource.filter(i => i.id !== element.id);
-  //   //         this.table.renderRows();
-  //   //       });
-  //   //   }
-  //   // });
-  // }
+  applyFilterSchoolUnits(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.schoolUnitsDataSource.filter = filterValue.trim().toLowerCase();
+  }
 
+  applyFilterSchools(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.schoolsDataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

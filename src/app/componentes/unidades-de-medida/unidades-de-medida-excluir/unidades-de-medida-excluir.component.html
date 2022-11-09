@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Excluir Unidade de Medida</h1>
+<div mat-dialog-content>
+  <p>Tem certeza que deseja apagar a unidade de medida <b>{{ data.name }}</b></p>
+</div>
+<div mat-dialog-actions style="float: right">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button  color="warn" (click)="deleteProduct(data)">Excluir</button>
+</div>
