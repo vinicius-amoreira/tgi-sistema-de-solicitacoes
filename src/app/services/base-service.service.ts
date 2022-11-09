@@ -4,7 +4,7 @@ import { LocalStorageService } from "ngx-webstorage";
 import { environment } from "../../environments/environment";
 import { lastValueFrom } from "rxjs";
 
-interface LoopApiResponse<T extends BaseModel> {
+interface ApiResponse<T extends BaseModel> {
   success: boolean,
   data: T | T[] | boolean
 }
@@ -28,10 +28,10 @@ export abstract class BaseService<T extends BaseModel> {
     let token = this.localStorage.retrieve('token');
 
     let headers = new HttpHeaders({
-      'business-app': environment.businessApp,
-      'company': environment.company,
+      // 'business-app': environment.businessApp,
+      // 'company': environment.company,
       // 'firebase': token,
-      'refresh': environment.refresh
+      // 'refresh': environment.refresh
     })
 
     return  headers;
@@ -40,41 +40,41 @@ export abstract class BaseService<T extends BaseModel> {
   public getResources(): Promise<T[]> {
     let header = this.buildHeader();
 
-    return lastValueFrom(this.http.get<LoopApiResponse<T>>(this.route, { headers: header }))
+    return lastValueFrom(this.http.get<ApiResponse<T>>(this.route, { headers: header }))
       .then(result => {
         return this.handleResponse(result) as T[];
       });
   }
 
   public getResource(id: number): Promise<T> {
-    return lastValueFrom(this.http.get<LoopApiResponse<T>>(`${this.route}/${id}`))
+    return lastValueFrom(this.http.get<ApiResponse<T>>(`${this.route}/${id}`))
       .then(result => {
         return this.handleResponse(result) as T;
       });
   }
 
   public createResource(model: BaseModel): Promise<T> {
-    return lastValueFrom(this.http.post<LoopApiResponse<T>>(this.route, model))
+    return lastValueFrom(this.http.post<ApiResponse<T>>(this.route, model))
       .then(result => {
         return this.handleResponse(result) as T;
       });
   }
 
   public updateResource(model: BaseModel, id: number): Promise<T> {
-    return lastValueFrom(this.http.put<LoopApiResponse<T>>(`${this.route}/${id}`, model))
+    return lastValueFrom(this.http.put<ApiResponse<T>>(`${this.route}/${id}`, model))
       .then(result => {
         return this.handleResponse(result) as T;
       });
   }
 
   public delete(id: number): Promise<boolean> {
-    return lastValueFrom(this.http.delete<LoopApiResponse<T>>(`${this.route}/${id}`))
+    return lastValueFrom(this.http.delete<ApiResponse<T>>(`${this.route}/${id}`))
       .then((result) => {
         return this.handleResponse(result) as true;
       });
   }
 
-  protected handleResponse(response: LoopApiResponse<T>) {
+  protected handleResponse(response: ApiResponse<T>) {
     if(response.success) {
       return response.data;
     } else {
