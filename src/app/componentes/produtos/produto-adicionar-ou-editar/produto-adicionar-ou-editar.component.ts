@@ -5,7 +5,7 @@ import {UnidadesDeMedidaModel} from "../../../models/unidades-de-medida.model";
 import {ProdutosService} from "../../../services/produtos.service";
 
 @Component({
-  selector: 'app-produto-adicionar-ou-editar',
+  selector: 'app-unidades-de-medida-adicionar-ou-editar',
   templateUrl: './produto-adicionar-ou-editar.component.html',
   styleUrls: ['./produto-adicionar-ou-editar.component.css']
 })
@@ -23,6 +23,7 @@ export class ProdutoAdicionarOuEditarComponent implements OnInit {
   ngOnInit(): void {
     this.loadMeasurementUnities();
     this.editMode = !!this.data.id;
+    console.log(this.data);
   }
 
   loadMeasurementUnities(): void {

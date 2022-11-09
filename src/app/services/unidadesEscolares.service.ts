@@ -41,8 +41,8 @@ export class UnidadesEscolaresService {
     );
   }
 
-  update(payload: UnidadeEscolarModel): Observable<UnidadeEscolarModel> {
-    const schoolIdUrl = `${this.apiUrl}/${payload.id}`;
+  update(payload: UnidadeEscolarModel, id: number): Observable<UnidadeEscolarModel> {
+    const schoolIdUrl = `${this.apiUrl}/${id}`;
     return this.http.put<UnidadeEscolarModel>(schoolIdUrl, payload).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))

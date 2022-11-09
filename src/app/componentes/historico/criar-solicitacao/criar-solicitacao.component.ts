@@ -5,6 +5,8 @@ import {UnidadesEscolaresService} from "../../../services/unidadesEscolares.serv
 import {ProdutosService} from "../../../services/produtos.service";
 import {UnidadeEscolarModel} from "../../../models/escolas.model";
 import {ProdutosModel} from "../../../models/produtos.model";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {RequestsService} from "../../../services/requests.service";
 
 @Component({
   selector: 'app-criar-solicitacao',
@@ -15,17 +17,66 @@ export class CriarSolicitacaoComponent implements OnInit {
   unidadesEscolares: UnidadeEscolarModel[] = [];
   produtos: ProdutosModel[] = [];
 
+  requestsForm: FormGroup = this.fb.group({
+    schoolUnit: this.fb.group({
+      id: [null, Validators.required],
+    }),
+    requestAction: this.fb.group({
+      id: [null, Validators.required]
+    }),
+    requestItems: this.fb.array([this.createRequestItems()])
+  })
+
+  acoes = [
+    {
+      id: 1,
+      action: "Entrada",
+    },
+    {
+      id: 2,
+      action: "Saída",
+    }
+  ]
+
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: SolicitacoesModel,
     public dialogRef: MatDialogRef<CriarSolicitacaoComponent>,
     private unidadesEscolaresService: UnidadesEscolaresService,
     private produtosService: ProdutosService,
+    private fb: FormBuilder,
+    public requestsService: RequestsService,
   ) { }
 
   ngOnInit(): void {
     this.listProducts();
     this.listSchoolUnitites();
+    console.log(this.requestsForm.value);
+  }
+
+  createRequestItems(): FormGroup {
+    return this.fb.group({
+      material: this.fb.group({
+        id: [null, Validators.required]
+      }),
+      quantity: [null, Validators.required],
+    })
+  }
+
+  get requestItem() {
+    return <FormArray>this.requestsForm.get('requestItems')
+  }
+
+  addRequestItem() {
+    this.requestItem.push(this.createRequestItems())
+  }
+
+  removeOrClearRequestItem(i: number): void {
+    if(this.requestItem.length > 1) {
+      this.requestItem.removeAt(i);
+    } else {
+      this.requestItem.reset();
+    }
   }
 
   listSchoolUnitites(): void {
@@ -40,4 +91,12 @@ export class CriarSolicitacaoComponent implements OnInit {
     })
   }
 
+  onNoClick() {
+    this.dialogRef.close()
+  }
+
+  saveRequestItem() {
+    console.log(this.requestsForm);
+    this.requestsService.create(this.requestsForm.value).subscribe()
+  }
 }

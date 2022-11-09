@@ -1,6 +1,6 @@
 <div class="container">
   <mat-toolbar>
-    Produtos
+    Unidades de Medida
   </mat-toolbar>
 
   <hr class="line">
@@ -11,15 +11,15 @@
         <form class="example-form">
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Busca Avançada</mat-label>
-            <input (keyup)="applyFilter($event)" type="text" matInput placeholder="digite a coluna ou o item">
+            <input type="text" matInput placeholder="digite a coluna ou o item" (keyup)="applyFilter($event)">
             <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
         </form>
       </div>
 
       <div class="add">
-        <button mat-button color="primary" (click)="addProduct(produto)">
-          <span>Adicionar Produto</span>
+        <button mat-button color="primary" (click)="addProduct(unidadeDeMedida)">
+          <span>Adicionar Unidade de Medida</span>
         </button>
       </div>
     </div>
@@ -32,19 +32,14 @@
           <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="nome">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header="name"> Nome </th>
-          <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+        <ng-container matColumnDef="unidade">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="unit"> Unidade </th>
+          <td mat-cell *matCellDef="let element"> {{ element.unit }} </td>
         </ng-container>
 
         <ng-container matColumnDef="descricao">
           <th mat-header-cell *matHeaderCellDef mat-sort-header="description"> Descrição </th>
           <td mat-cell *matCellDef="let element"> {{ element.description }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="quantidade">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header="quantity"> Quantidade </th>
-          <td mat-cell *matCellDef="let element"> {{ element.stock.quantity }} </td>
         </ng-container>
 
         <ng-container matColumnDef="acoes">
@@ -64,7 +59,6 @@
       </table>
       <mat-paginator
         class="mat-elevation-z8"
-        [length]="produtos.length"
         [pageSize]="10"
         [pageSizeOptions]="[10, 25, 50, 100]"
       ></mat-paginator>
