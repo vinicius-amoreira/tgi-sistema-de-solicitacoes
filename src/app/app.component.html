@@ -1,1 +1,9 @@
-<app-sidenav></app-sidenav>
+<div *ngIf="userIsLogged == true">
+  <app-sidenav></app-sidenav>
+</div>
+
+<div *ngIf="userIsLogged == false">
+  <app-login></app-login>
+</div>
+
+<!-- <app-sidenav></app-sidenav> -->
