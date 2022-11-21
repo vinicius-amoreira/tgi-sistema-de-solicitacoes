@@ -14,17 +14,23 @@
           </mat-form-field>
         </div>
 
-        <div class="date-picker">
+        <div class="date-picker" [formGroup]="dateForm">
           <mat-form-field>
             <mat-label>Intervalo de datas</mat-label>
             <mat-date-range-input [rangePicker]="picker">
-              <input matStartDate placeholder="Data inicial">
-              <input matEndDate placeholder="Data final">
+              <input matStartDate placeholder="Data inicial" formControlName="start_date">
+              <input matEndDate placeholder="Data final" formControlName="end_date">
             </mat-date-range-input>
             <mat-hint>DD-MM-YYYY - DD-MM-YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-date-range-picker #picker></mat-date-range-picker>
           </mat-form-field>
+          <button
+            [disabled]="dateForm.invalid"
+            mat-raised-button color="primary"
+            (click)="listByDateInterval(this.dateForm)"
+            style="margin-left: .8em"
+          >Filtrar</button>
         </div>
       </div>
 
@@ -41,17 +47,17 @@
 
         <ng-container matColumnDef="acao">
           <th mat-header-cell *matHeaderCellDef> Ação </th>
-          <td mat-cell *matCellDef="let element"> {{element.requestAction.description}} </td>
+          <td mat-cell *matCellDef="let element"> {{element?.requestAction?.description}} </td>
         </ng-container>
 
         <ng-container matColumnDef="escola">
           <th mat-header-cell *matHeaderCellDef> Escola </th>
-          <td mat-cell *matCellDef="let element"> {{element.schoolUnit.name}} </td>
+          <td mat-cell *matCellDef="let element"> {{element?.schoolUnit?.name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="data">
           <th mat-header-cell *matHeaderCellDef> Data </th>
-          <td mat-cell *matCellDef="let element"> {{element.created_at | date:"dd/MM/YYYY - HH:mm'h'"}} </td>
+          <td mat-cell *matCellDef="let element"> {{element?.created_at | date:"dd/MM/YYYY - HH:mm'h'"}} </td>
         </ng-container>
 
 

@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProdutosModel } from 'src/app/models/produtos.model';
 import {UnidadesDeMedidaModel} from "../../../models/unidades-de-medida.model";
 import {ProdutosService} from "../../../services/produtos.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-unidades-de-medida-adicionar-ou-editar',
@@ -18,6 +19,7 @@ export class ProdutoAdicionarOuEditarComponent implements OnInit {
     public data: ProdutosModel,
     public dialogRef: MatDialogRef<ProdutoAdicionarOuEditarComponent>,
     private produtosService: ProdutosService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +32,15 @@ export class ProdutoAdicionarOuEditarComponent implements OnInit {
     this.produtosService.readMeasurementUnities().subscribe((data) => {
       this.unities = data;
     })
+  }
+
+  showMessage(msg: string, isError: boolean = false): void {
+    this.snackBar.open(msg, 'X', {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: isError ? ['msg-error'] : ['msg-success'],
+    });
   }
 
   createOrEditProduct(payload: ProdutosModel): void {
@@ -46,15 +57,15 @@ export class ProdutoAdicionarOuEditarComponent implements OnInit {
     } as unknown as ProdutosModel
     if(this.editMode) {
       this.produtosService.update(formattedPayload).subscribe(() => {
-        console.log('foi')
+        this.showMessage("Sucesso!")
       }, () => {
-        console.log('nao foi')
+        this.showMessage("Erro!", true)
       })
     } else {
       this.produtosService.create(formattedPayload).subscribe(() => {
-        console.log('foi')
+        this.showMessage("Sucesso!")
       }, () => {
-        console.log('nao foi')
+        this.showMessage("Erro!", true)
       })
     }
   }

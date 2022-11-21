@@ -8,6 +8,7 @@ import {CriarSolicitacaoComponent} from "./criar-solicitacao/criar-solicitacao.c
 import {VisualizarSolicitacaoComponent} from "./visualizar-solicitacao/visualizar-solicitacao.component";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 
 @Component({
@@ -23,14 +24,24 @@ export class HistoricoComponent implements OnInit {
   dataSource!: MatTableDataSource<SolicitacoesModel[]>
   solicitacoes: SolicitacoesModel[] = [];
   solicitacao: SolicitacoesModel = {} as SolicitacoesModel;
+  dateForm!: FormGroup;
 
   constructor(
     private requestsService: RequestsService,
     private dialog: MatDialog,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
     this.listRequests();
+    this.buildFilterDateForm();
+  }
+
+  buildFilterDateForm(): void {
+    this.dateForm = this.fb.group({
+      "start_date": [null, [Validators.required]],
+      "end_date": [null, [Validators.required]]
+    })
   }
 
   listRequests(): void {
@@ -66,5 +77,19 @@ export class HistoricoComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  listByDateInterval(payload: any) {
+    const startDate: Date = payload.value.start_date;
+    const endDate: Date = payload.value.end_date;
+    const formattedStartDate = startDate.toISOString().split('T')[0];
+    const formattedEndDate = endDate.toISOString().split('T')[0];
+
+    this.requestsService.filterByDateInterval(formattedStartDate, formattedEndDate).subscribe((data) => {
+      this.solicitacoes = data;
+      this.dataSource = new MatTableDataSource(data) as unknown as MatTableDataSource<any>;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    })
   }
 }

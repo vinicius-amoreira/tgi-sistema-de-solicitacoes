@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  postLogin: 'http://localhost:3333/users/auth/sessions',
-  api: 'http://localhost:3333'
+  postLogin: 'http://localhost:80/users/auth/sessions',
+  apiUrl: 'http://localhost:80'
 };

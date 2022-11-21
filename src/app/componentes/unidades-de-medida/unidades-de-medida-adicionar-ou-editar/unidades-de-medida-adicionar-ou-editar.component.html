@@ -9,12 +9,12 @@
   <div class="inputs">
     <mat-form-field appearance="outline" class="input">
       <mat-label>Símbolo da unidade de medida</mat-label>
-      <input matInput placeholder="Placeholder" name="name" [(ngModel)]="data.unit">
+      <input matInput required placeholder="Placeholder" name="name" [(ngModel)]="data.unit">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="input">
       <mat-label>Descrição da unidade de medida</mat-label>
-      <input matInput placeholder="Placeholder" name="name" [(ngModel)]="data.description">
+      <input matInput required placeholder="Placeholder" name="name" [(ngModel)]="data.description">
     </mat-form-field>
   </div>
 </div>
@@ -22,5 +22,12 @@
 <div  class="dialog-footer">
   <hr>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="data" color="primary" (click)="createOrEditProduct(data)">Adicionar</button>
+  <button
+    mat-button
+    [mat-dialog-close]="data" color="primary"
+    (click)="createOrEditProduct(data)"
+    [disabled]="!data.description || !data.unit"
+  >
+    Adicionar
+  </button>
 </div>

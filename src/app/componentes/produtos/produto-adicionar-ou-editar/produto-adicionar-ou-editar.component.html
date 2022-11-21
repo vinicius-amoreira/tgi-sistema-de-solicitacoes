@@ -9,7 +9,7 @@
   <div class="inputs">
     <mat-form-field appearance="outline" class="input">
       <mat-label>Nome do Produto</mat-label>
-      <input matInput placeholder="Placeholder" name="name" [(ngModel)]="data.name">
+      <input matInput placeholder="Insira o nome do produto" name="name" [(ngModel)]="data.name">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="input">
@@ -25,12 +25,12 @@
   <div class="inputs">
     <mat-form-field appearance="outline" class="input">
       <mat-label>Descrição</mat-label>
-      <input matInput placeholder="Placeholder" name="description" [(ngModel)]="data.description">
+      <input matInput placeholder="Insira uma descrição" name="description" [(ngModel)]="data.description">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="input">
       <mat-label>Quantidade</mat-label>
-      <input type="number" min="1" matInput placeholder="Placeholder" name="quantity" [(ngModel)]="data.stock.quantity">
+      <input type="number" min="1" matInput placeholder="Insira a quantidade de produtos" name="quantity" [(ngModel)]="data.stock.quantity">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="input">
@@ -44,5 +44,10 @@
 <div  class="dialog-footer">
   <hr>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="data" color="primary" (click)="createOrEditProduct(data)">Adicionar</button>
+  <button
+    mat-button [mat-dialog-close]="data"
+    color="primary"
+    (click)="createOrEditProduct(data)"
+    [disabled]="!data.name || !data.description || !data.unit.id || !data.stock.quantity || !data.stock.quantity_min"
+  >Adicionar</button>
 </div>

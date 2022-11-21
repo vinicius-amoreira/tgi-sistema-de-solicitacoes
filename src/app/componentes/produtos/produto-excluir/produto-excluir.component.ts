@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProdutosModel } from '../../../models/produtos.model';
 import {ProdutosService} from "../../../services/produtos.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-unidades-de-medida-excluir',
@@ -15,9 +16,19 @@ export class ExcluirProdutoComponent implements OnInit {
     public data: ProdutosModel,
     public dialogRef: MatDialogRef<ExcluirProdutoComponent>,
     private produtosService: ProdutosService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
+  }
+
+  showMessage(msg: string, isError: boolean = false): void {
+    this.snackBar.open(msg, 'X', {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: isError ? ['msg-error'] : ['msg-success'],
+    });
   }
 
   onNoClick(): void {
@@ -26,9 +37,9 @@ export class ExcluirProdutoComponent implements OnInit {
 
   deleteProduct(payload: ProdutosModel): void {
     this.produtosService.delete(payload.id!).subscribe(() => {
-      console.log('foi')
+      this.showMessage("Sucesso!")
     }, () => {
-      console.log('nao foi')
+      this.showMessage("Erro!", true)
     })
   }
 }

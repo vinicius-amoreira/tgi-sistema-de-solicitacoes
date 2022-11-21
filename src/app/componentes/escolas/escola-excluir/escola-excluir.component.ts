@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EscolasModel } from 'src/app/models/escolas.model';
 import {EscolasService} from "../../../services/escolas.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-escola-excluir',
@@ -15,14 +16,26 @@ export class EscolaExcluirComponent implements OnInit {
     public data: EscolasModel,
     public dialogRef: MatDialogRef<EscolaExcluirComponent>,
     private escolasService: EscolasService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
   }
 
+  showMessage(msg: string, isError: boolean = false): void {
+    this.snackBar.open(msg, 'X', {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: isError ? ['msg-error'] : ['msg-success'],
+    });
+  }
+
   deleteSchool(payload: EscolasModel): void {
     this.escolasService.delete(payload.id!).subscribe(() => {
-      console.log('foi')
+      this.showMessage("Sucesso!")
+    }, () => {
+      this.showMessage("Erro!", true)
     })
   }
 

@@ -57,6 +57,14 @@ export class RequestsService {
     );
   }
 
+  filterByDateInterval(start_date: string, end_date: string ): Observable<SolicitacoesModel[]> {
+    const filteredByDateUrl = `${this.apiUrl}/item/in-interval/${start_date}/${end_date}`
+    return this.http.get<SolicitacoesModel[]>(filteredByDateUrl).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e))
+    )
+  }
+
   errorHandler(e: any): Observable<any> {
     console.log(e);
     this.showMessage('Ocorreu um erro!', true);

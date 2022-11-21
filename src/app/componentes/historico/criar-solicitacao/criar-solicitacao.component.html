@@ -52,5 +52,5 @@
 <div class="dialog-footer">
   <hr>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="data" color="primary" (click)="saveRequestItem()">Adicionar</button>
+  <button mat-button [mat-dialog-close]="data" color="primary" (click)="saveRequestItem()" [disabled]="requestsForm.invalid">Adicionar</button>
 </div>

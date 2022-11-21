@@ -1,4 +1,30 @@
 .align-graphs {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.products-graph {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input {
+  width: 45%;
+  margin: 0 2vw 0 2vw
+}
+
+.low-stock {
+  max-width: 100%;
+  padding: 5vh 5vw 10vh 5vw;
+}
+
+table {
+  width: 100%;
+}
+
+table th, td {
+  text-align: center;
 }

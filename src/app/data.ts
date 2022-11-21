@@ -1,95 +1,184 @@
 export var single = [
   {
     "name": "Janeiro",
-    "value": 211
+    "value": 8940000
   },
   {
     "name": "Fevereiro",
-    "value": 157
+    "value": 5000000
   },
   {
     "name": "Março",
-    "value": 184
-  },
-  {
-    "name": "Abril",
-    "value": 199
-  },
-  {
-    "name": "Maio",
-    "value": 134
-  },
-  {
-    "name": "Junho",
-    "value": 214
-  },
-  {
-    "name": "Julho",
-    "value": 122
-  },
-  {
-    "name": "Agosto",
-    "value": 176
-  },
-  {
-    "name": "Setembro",
-    "value": 199
-  },
-  {
-    "name": "Outrubro",
-    "value": 250
-  },
-  {
-    "name": "Novembro",
-    "value": 112
-  },
-  {
-    "name": "Dezembro",
-    "value": 167
-  },
-
+    "value": 7200000
+  }
 ];
 
 export var multi = [
   {
-    "name": "Germany",
+    "name": "Janeiro",
     "series": [
       {
-        "name": "2010",
-        "value": 315
+        "name": "Entrada",
+        "value": 58
       },
       {
-        "name": "2011",
-        "value": 210
+        "name": "Saída",
+        "value": 39
       }
     ]
   },
 
   {
-    "name": "USA",
+    "name": "Fevereiro",
     "series": [
       {
-        "name": "2010",
-        "value": 177
+        "name": "Entrada",
+        "value": 76
       },
       {
-        "name": "2011",
-        "value": 94
+        "name": "Saída",
+        "value": 27
       }
     ]
   },
 
   {
-    "name": "France",
+    "name": "Março",
     "series": [
       {
-        "name": "2010",
-        "value": 201
+        "name": "Entrada",
+        "value": 34
       },
       {
-        "name": "2011",
-        "value": 194
+        "name": "Saída",
+        "value": 65
       }
     ]
-  }
+  },
+
+  {
+    "name": "Abril",
+    "series": [
+      {
+        "name": "Entrada",
+        "value": 5
+      },
+      {
+        "name": "Saída",
+        "value": 19
+      }
+    ]
+  },
+
+  {
+    "name": "Maio",
+    "series": [
+      {
+        "name": "Entrada",
+        "value": 25
+      },
+      {
+        "name": "Saída",
+        "value": 12
+      }
+    ]
+  },
+
+  {
+    "name": "Junho",
+    "series": [
+      {
+        "name": "Entrada",
+        "value": 31
+      },
+      {
+        "name": "Saída",
+        "value": 32
+      }
+    ]
+  },
+
+  {
+    "name": "Julho",
+    "series": [
+      {
+        "name": "Entrada",
+        "value": 12
+      },
+      {
+        "name": "Saída",
+        "value": 22
+      }
+    ]
+  },
+
+  {
+    "name": "Agosto",
+    "series": [
+      {
+        "name": "Entrada",
+        "value": 10
+      },
+      {
+        "name": "Saída",
+        "value": 39
+      }
+    ]
+  },
+
+  {
+    "name": "Setembro",
+    "series": [
+      {
+        "name": "Entrada",
+        "value": 58
+      },
+      {
+        "name": "Saída",
+        "value": 39
+      }
+    ]
+  },
+
+  {
+    "name": "Outubro",
+    "series": [
+      {
+        "name": "Entrada",
+        "value": 40
+      },
+      {
+        "name": "Saída",
+        "value": 30
+      }
+    ]
+  },
+
+  {
+    "name": "Novembro",
+    "series": [
+      {
+        "name": "Entrada",
+        "value": 33
+      },
+      {
+        "name": "Saída",
+        "value": 32
+      }
+    ]
+  },
+
+  {
+    "name": "Dezembro",
+    "series": [
+      {
+        "name": "Entrada",
+        "value": 58
+      },
+      {
+        "name": "Saída",
+        "value": 39
+      }
+    ]
+  },
 ];

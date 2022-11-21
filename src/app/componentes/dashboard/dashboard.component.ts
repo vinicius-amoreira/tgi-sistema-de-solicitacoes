@@ -1,20 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { single } from '../../data'
+import {Component, OnInit, ViewChild} from '@angular/core';
+import { single, multi } from '../../data'
 import {ProdutosService} from "../../services/produtos.service";
 import {ProdutosModel} from "../../models/produtos.model";
+import {MatTable, MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {GetLastYears} from "../../../helpers/getLastYears.helper"
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  lowStockProducts: ProdutosModel[] = [];
+  @ViewChild(MatTable) table!: MatTable<any>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  displayedColumns: string[] = ['produto', 'quantidade', 'quantidade_min'];
+  dataSource!: MatTableDataSource<any[]>
+  produtos: ProdutosModel[] = [];
+  lowStockProducts: any[] = [];
   single: any[] = [];
   multi: any[] = [];
+  lastHundredYears: number[] = GetLastYears(100);
 
   view: [number, number] = [1280, 500];
 
-  // options
+// options
   showXAxis = true;
   showYAxis = true;
   gradient = false;
@@ -22,26 +31,31 @@ export class DashboardComponent implements OnInit {
   showXAxisLabel = true;
   xAxisLabel = 'Meses';
   showYAxisLabel = true;
-  yAxisLabel = 'Total de itens';
+  yAxisLabel = 'Quantidade';
 
   constructor(
     private produtosService: ProdutosService,
   ) {
-    Object.assign(this, { single })
+    Object.assign(this, { multi })
   }
 
   ngOnInit(): void {
     this.readLowStockProducts();
-  }
-
-  onSelect(event: any) {
-    console.log(event);
+    this.listProducts();
+    this.lastHundredYears.reverse();
   }
 
   readLowStockProducts(): void {
     this.produtosService.readLowStock().subscribe((data) => {
       this.lowStockProducts = data;
-      console.log(data);
+      this.dataSource = new MatTableDataSource(data) as unknown as MatTableDataSource<any>;
+      this.dataSource.paginator = this.paginator;
+    })
+  }
+
+  listProducts(): void {
+    this.produtosService.read().subscribe((data) => {
+      this.produtos = data;
     })
   }
 

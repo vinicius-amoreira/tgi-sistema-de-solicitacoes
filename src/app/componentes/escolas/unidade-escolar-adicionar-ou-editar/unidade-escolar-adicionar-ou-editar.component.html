@@ -56,6 +56,6 @@
 <div class="dialog-footer">
   <hr>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button *ngIf="!editMode" mat-button [mat-dialog-close]="data" color="primary" (click)="saveSchoolUnit()">Adicionar</button>
-  <button *ngIf="editMode" mat-button [mat-dialog-close]="data" color="primary" (click)="saveSchoolUnit()">Editar</button>
+  <button *ngIf="!editMode" mat-button [mat-dialog-close]="data" color="primary" (click)="saveSchoolUnit()" [disabled]="schoolUnitForm.invalid">Adicionar</button>
+  <button *ngIf="editMode" mat-button [mat-dialog-close]="data" color="primary" (click)="saveSchoolUnit()" [disabled]="schoolUnitForm.invalid">Editar</button>
 </div>
