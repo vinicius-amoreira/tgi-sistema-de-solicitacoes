@@ -5,7 +5,7 @@ import { ProdutosModel } from 'src/app/models/produtos.model';
 import { ProdutoAdicionarOuEditarComponent } from './produto-adicionar-ou-editar/produto-adicionar-ou-editar.component';
 import { ExcluirProdutoComponent } from './produto-excluir/produto-excluir.component';
 import {ProdutosService} from "../../services/produtos.service";
-import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 
 @Component({
@@ -64,7 +64,14 @@ export class ProdutosComponent implements OnInit {
   }
 
   editProduct(produto: ProdutosModel): void {
-    this.addProduct(produto);
+    const dialogRef = this.dialog.open(ProdutoAdicionarOuEditarComponent, {
+      width: '70%',
+      data: produto,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.listProducts();
+    });
   }
 
   deleteProduct(produto: ProdutosModel): void {

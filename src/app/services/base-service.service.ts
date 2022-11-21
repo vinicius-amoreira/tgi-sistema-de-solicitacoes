@@ -21,7 +21,7 @@ export abstract class BaseService<T extends BaseModel> {
   ) {
     this.http = http;
     this.localStorage = localStorage;
-    this.route = environment.api + route;
+    this.route = environment.apiUrl + route;
   }
 
   public buildHeader(): HttpHeaders {

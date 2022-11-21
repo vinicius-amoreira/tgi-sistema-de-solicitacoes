@@ -16,7 +16,6 @@ export class VisualizarSolicitacaoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data);
   }
 
 }

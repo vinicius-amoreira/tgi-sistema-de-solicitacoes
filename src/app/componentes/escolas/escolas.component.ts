@@ -66,7 +66,6 @@ export class EscolasComponent implements OnInit {
   }
 
   addSchool(escola: EscolasModel | null): void {
-    console.log(escola);
     const dialogRef = this.dialog.open(EscolaAdicionarOuEditarComponent, {
       width: '30%',
       data: escola,

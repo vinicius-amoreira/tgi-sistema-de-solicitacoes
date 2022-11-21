@@ -29,6 +29,7 @@
           <mat-select placeholder="Selecione um Produto" formControlName="id">
             <mat-option *ngFor="let product of produtos" [value]="product.id">
               {{ product.name }}
+              <mat-hint>{{ product.stock.quantity }} em estoque.</mat-hint>
             </mat-option>
           </mat-select>
         </mat-form-field>

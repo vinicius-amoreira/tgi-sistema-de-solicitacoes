@@ -5,6 +5,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {SolicitacoesModel} from "../models/solicitacoes.model";
 import {EMPTY, Observable} from "rxjs";
 import {catchError, map} from "rxjs/operators";
+import {DashboardDataModel} from "../models/dashboard-data.model";
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,15 @@ export class RequestsService {
   filterByDateInterval(start_date: string, end_date: string ): Observable<SolicitacoesModel[]> {
     const filteredByDateUrl = `${this.apiUrl}/item/in-interval/${start_date}/${end_date}`
     return this.http.get<SolicitacoesModel[]>(filteredByDateUrl).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e))
+    )
+  }
+
+  getDashboardGraphData(itemId: number, year: number): Observable<DashboardDataModel[]> {
+    const url = `${this.apiUrl}/item/material/${itemId}/year/${year}`
+
+    return this.http.get<DashboardDataModel[]>(url).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     )

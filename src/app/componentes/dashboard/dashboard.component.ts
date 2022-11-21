@@ -5,6 +5,8 @@ import {ProdutosModel} from "../../models/produtos.model";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {GetLastYears} from "../../../helpers/getLastYears.helper"
+import {RequestsService} from "../../services/requests.service";
+import {DashboardDataModel} from "../../models/dashboard-data.model";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -17,7 +19,6 @@ export class DashboardComponent implements OnInit {
   dataSource!: MatTableDataSource<any[]>
   produtos: ProdutosModel[] = [];
   lowStockProducts: any[] = [];
-  single: any[] = [];
   multi: any[] = [];
   lastHundredYears: number[] = GetLastYears(100);
 
@@ -32,11 +33,13 @@ export class DashboardComponent implements OnInit {
   xAxisLabel = 'Meses';
   showYAxisLabel = true;
   yAxisLabel = 'Quantidade';
+  selectedProduct!: number;
+  selectedYear: number = new Date().getFullYear();
 
   constructor(
     private produtosService: ProdutosService,
+    private requestsService: RequestsService,
   ) {
-    Object.assign(this, { multi })
   }
 
   ngOnInit(): void {
@@ -56,6 +59,31 @@ export class DashboardComponent implements OnInit {
   listProducts(): void {
     this.produtosService.read().subscribe((data) => {
       this.produtos = data;
+      this.selectedProduct = data[0].id!;
+      this.loadDashboardStatistics(this.selectedProduct, this.selectedYear);
+    })
+  }
+
+  loadDashboardStatistics(itemId: number, year: number): void {
+    this.requestsService.getDashboardGraphData(itemId, year).subscribe((items) => {
+      const months =["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+      this.multi = [];
+      months.map((month, index) => {
+        let data = {
+          name: month,
+          series: [
+            {
+              name: "Entradas",
+              value: items[index].entriesTotalItems
+            },
+            {
+              name: "Saídas",
+              value: items[index].exitTotalItems
+            }
+          ]
+        }
+        this.multi.push(data);
+      })
     })
   }
 

@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  postLogin: 'http://localhost:80/users/auth/sessions',
-  apiUrl: 'http://localhost:80'
+  postLogin: 'https://material-request-production.up.railway.app/users/auth/sessions',
+  apiUrl: 'https://material-request-production.up.railway.app'
 };

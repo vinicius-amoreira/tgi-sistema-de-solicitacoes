@@ -9,14 +9,14 @@
         Dados do produto
       </mat-toolbar>
       <mat-form-field appearance="outline" class="input">
-        <mat-select placeholder="Selecione um Produto">
+        <mat-select placeholder="Selecione um Produto" [(ngModel)]="selectedProduct" (selectionChange)="loadDashboardStatistics(this.selectedProduct, this.selectedYear)">
           <mat-option *ngFor="let product of produtos" [value]="product.id">
             {{ product.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline" class="input">
-        <mat-select placeholder="Selecione o ano">
+        <mat-select placeholder="Selecione o ano" [(ngModel)]="selectedYear" (selectionChange)="loadDashboardStatistics(this.selectedProduct, this.selectedYear)">
           <mat-option *ngFor="let years of lastHundredYears" [value]="years">
             {{ years }}
           </mat-option>

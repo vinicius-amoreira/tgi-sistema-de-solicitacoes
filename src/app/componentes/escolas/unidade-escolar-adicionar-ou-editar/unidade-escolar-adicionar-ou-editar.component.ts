@@ -32,7 +32,6 @@ export class UnidadeEscolarAdicionarOuEditarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.data);
     this.listSchools();
     this.editMode = !!this.data.id;
     if (this.editMode) {

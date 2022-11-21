@@ -19,7 +19,6 @@ export class EscolaAdicionarOuEditarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data);
     this.editMode = !!this.data.id;
   }
 

@@ -25,7 +25,6 @@ export class ProdutoAdicionarOuEditarComponent implements OnInit {
   ngOnInit(): void {
     this.loadMeasurementUnities();
     this.editMode = !!this.data.id;
-    console.log(this.data);
   }
 
   loadMeasurementUnities(): void {
@@ -47,6 +46,10 @@ export class ProdutoAdicionarOuEditarComponent implements OnInit {
     const formattedPayload = {
       unit: {
         id: payload.unit.id
+      },
+      stock: {
+        id: payload.stock ? payload.stock.id : null,
+        quantity_min: payload.stock ? payload.stock.quantity_min : null,
       },
       id: payload.id,
       name: payload.name,

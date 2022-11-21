@@ -51,7 +51,6 @@ export class CriarSolicitacaoComponent implements OnInit {
   ngOnInit(): void {
     this.listProducts();
     this.listSchoolUnitites();
-    console.log(this.requestsForm.value);
   }
 
   createRequestItems(): FormGroup {
@@ -96,7 +95,6 @@ export class CriarSolicitacaoComponent implements OnInit {
   }
 
   saveRequestItem() {
-    console.log(this.requestsForm);
     this.requestsService.create(this.requestsForm.value).subscribe()
   }
 }

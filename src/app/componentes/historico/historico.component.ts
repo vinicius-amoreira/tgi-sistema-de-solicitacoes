@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ProdutosModel} from "../../models/produtos.model";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {SolicitacoesModel} from "../../models/solicitacoes.model";
 import {RequestsService} from "../../services/requests.service";
