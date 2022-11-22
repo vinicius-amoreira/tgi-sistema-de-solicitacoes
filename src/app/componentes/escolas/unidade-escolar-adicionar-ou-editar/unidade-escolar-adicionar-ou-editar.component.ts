@@ -83,7 +83,7 @@ export class UnidadeEscolarAdicionarOuEditarComponent implements OnInit {
 
   listSchools(): void {
     this.escolasService.read().subscribe((data) => {
-      this.escolas = data;
+      this.escolas = data.sort((a, b) => a.name.localeCompare(b.name));
     })
   }
 

@@ -54,6 +54,7 @@ import {
   ExcluirUnidadeDeMedidaComponent
 } from "./componentes/unidades-de-medida/unidades-de-medida-excluir/unidades-de-medida-excluir.component";
 import {CustomPaginator} from "../helpers/customPaginatorConfiguration.helper";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 @NgModule({
@@ -110,6 +111,7 @@ import {CustomPaginator} from "../helpers/customPaginatorConfiguration.helper";
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatSortModule,
+    MatTooltipModule,
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: CustomPaginator() },

@@ -80,13 +80,13 @@ export class CriarSolicitacaoComponent implements OnInit {
 
   listSchoolUnitites(): void {
     this.unidadesEscolaresService.read().subscribe((data) => {
-      this.unidadesEscolares = data;
+      this.unidadesEscolares = data.sort((a, b) => a.name.localeCompare(b.name));
     })
   }
 
   listProducts(): void {
     this.produtosService.read().subscribe((data) => {
-      this.produtos = data;
+      this.produtos = data.sort((a, b) => a.name.localeCompare(b.name));
     })
   }
 

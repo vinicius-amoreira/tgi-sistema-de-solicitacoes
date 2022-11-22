@@ -31,6 +31,12 @@
             (click)="listByDateInterval(this.dateForm)"
             style="margin-left: .8em"
           >Filtrar</button>
+          <mat-icon
+            matTooltip="Remover filtro"
+            mat-list-icon
+            style="margin-left: .5em; cursor: pointer"
+            (click)="removeFilter()"
+          >filter_alt_off</mat-icon>
         </div>
       </div>
 

@@ -1,12 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { single, multi } from '../../data'
 import {ProdutosService} from "../../services/produtos.service";
 import {ProdutosModel} from "../../models/produtos.model";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {GetLastYears} from "../../../helpers/getLastYears.helper"
 import {RequestsService} from "../../services/requests.service";
-import {DashboardDataModel} from "../../models/dashboard-data.model";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -58,7 +56,7 @@ export class DashboardComponent implements OnInit {
 
   listProducts(): void {
     this.produtosService.read().subscribe((data) => {
-      this.produtos = data;
+      this.produtos = data.sort((a, b) => a.name.localeCompare(b.name));
       this.selectedProduct = data[0].id!;
       this.loadDashboardStatistics(this.selectedProduct, this.selectedYear);
     })

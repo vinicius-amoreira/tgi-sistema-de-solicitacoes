@@ -29,7 +29,7 @@ export class ProdutoAdicionarOuEditarComponent implements OnInit {
 
   loadMeasurementUnities(): void {
     this.produtosService.readMeasurementUnities().subscribe((data) => {
-      this.unities = data;
+      this.unities = data.sort((a, b) => a.description.localeCompare(b.description));
     })
   }
 

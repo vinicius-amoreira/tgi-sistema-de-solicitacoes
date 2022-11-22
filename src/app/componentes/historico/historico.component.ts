@@ -122,4 +122,12 @@ export class HistoricoComponent implements OnInit {
       };
     })
   }
+
+  removeFilter() {
+    this.listRequests();
+    this.dateForm.patchValue({
+      start_date: null,
+      end_date: null,
+    })
+  }
 }
