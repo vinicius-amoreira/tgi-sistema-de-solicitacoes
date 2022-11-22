@@ -112,6 +112,14 @@ export class HistoricoComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data) as unknown as MatTableDataSource<any>;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.dataSource.filterPredicate = (data, filter: string)  => {
+        const accumulator = (currentTerm: any, key: string) => {
+          return this.nestedFilterCheck(currentTerm, data, key);
+        };
+        const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+        const transformedFilter = filter.trim().toLowerCase();
+        return dataStr.indexOf(transformedFilter) !== -1;
+      };
     })
   }
 }
