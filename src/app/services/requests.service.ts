@@ -31,7 +31,7 @@ export class RequestsService {
   create(payload: SolicitacoesModel): Observable<SolicitacoesModel> {
     return this.http.post<SolicitacoesModel>(this.apiUrl, payload).pipe(
       map((obj) => obj),
-      catchError((e) => this.errorHandler(e))
+      catchError((e) => this.errorHandlerQuantity(e))
     );
   }
 
@@ -78,6 +78,12 @@ export class RequestsService {
   errorHandler(e: any): Observable<any> {
     console.log(e);
     this.showMessage('Ocorreu um erro!', true);
+    return EMPTY;
+  }
+
+  errorHandlerQuantity(e: any): Observable<any> {
+    console.log(e);
+    this.showMessage('ERRO! A Quantidade de saída foi maior que a de estoque!', true);
     return EMPTY;
   }
 

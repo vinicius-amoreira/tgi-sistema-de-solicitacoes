@@ -19,13 +19,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from "@angular/material/card";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { MatNativeDateModule } from "@angular/material/core";
+import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatInputModule } from "@angular/material/input";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from "@angular/material/select";
-import { MatPaginatorModule } from "@angular/material/paginator";
+import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatSortModule } from "@angular/material/sort";
 
@@ -53,6 +53,7 @@ import {
 import {
   ExcluirUnidadeDeMedidaComponent
 } from "./componentes/unidades-de-medida/unidades-de-medida-excluir/unidades-de-medida-excluir.component";
+import {CustomPaginator} from "../helpers/customPaginatorConfiguration.helper";
 
 
 @NgModule({
@@ -110,7 +111,10 @@ import {
     ReactiveFormsModule,
     MatSortModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: CustomPaginator() },
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

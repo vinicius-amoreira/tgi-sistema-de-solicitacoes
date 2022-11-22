@@ -8,6 +8,7 @@ export interface SolicitacoesModel extends DefaultModel{
   requestItems: ItensSolicitacoesModel[],
   schoolUnit: UnidadeEscolarModel,
   requestAction: AcoesModel,
+  totalQuantity?: number,
 }
 
 export interface ItensSolicitacoesModel extends DefaultModel{

@@ -6,20 +6,21 @@
 <div mat-dialog-content>
   <form [formGroup]="requestsForm">
     <div class="inputs">
+      <mat-form-field appearance="outline" class="input" formGroupName="requestAction">
+        <mat-select placeholder="Selecione uma Ação" formControlName="id" (ngModelChange)="changeAction($event)">
+          <mat-option *ngFor="let action of acoes" [value]="action.id">
+            {{action.action}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <mat-form-field appearance="outline" class="input" formGroupName="schoolUnit">
         <mat-select placeholder="Selecione uma Unidade Escolar" formControlName="id">
           <mat-option *ngFor="let schoolUnit of unidadesEscolares" [value]="schoolUnit.id">
             {{schoolUnit.name}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="input" formGroupName="requestAction">
-        <mat-select placeholder="Selecione uma Ação" formControlName="id">
-          <mat-option *ngFor="let action of acoes" [value]="action.id">
-            {{action.action}}
-          </mat-option>
-        </mat-select>
+        <mat-hint>Solicitações de entrada não necessitam de selecionar uma escola.</mat-hint>
       </mat-form-field>
     </div>
 

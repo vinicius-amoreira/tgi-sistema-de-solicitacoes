@@ -19,8 +19,8 @@ export class HistoricoComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<any>
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  displayedColumns: string[] = ['acao', 'escola', 'data'];
-  dataSource!: MatTableDataSource<SolicitacoesModel[]>
+  displayedColumns: string[] = ['acao', 'escola', 'data' ];
+  dataSource!: MatTableDataSource<SolicitacoesModel>;
   solicitacoes: SolicitacoesModel[] = [];
   solicitacao: SolicitacoesModel = {} as SolicitacoesModel;
   dateForm!: FormGroup;
@@ -49,7 +49,28 @@ export class HistoricoComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data) as unknown as MatTableDataSource<any>;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.dataSource.filterPredicate = (data, filter: string)  => {
+        const accumulator = (currentTerm: any, key: string) => {
+          return this.nestedFilterCheck(currentTerm, data, key);
+        };
+        const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+        const transformedFilter = filter.trim().toLowerCase();
+        return dataStr.indexOf(transformedFilter) !== -1;
+      };
     })
+  }
+
+  nestedFilterCheck(search: any, data: any, key: string) {
+    if (typeof data[key] === 'object') {
+      for (const k in data[key]) {
+        if (data[key][k] !== null) {
+          search = this.nestedFilterCheck(search, data[key], k);
+        }
+      }
+    } else {
+      search += data[key];
+    }
+    return search;
   }
 
   createRequest(solicitacao: SolicitacoesModel): void {
@@ -59,7 +80,9 @@ export class HistoricoComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(() => {
-      this.listRequests();
+      setTimeout(() => {
+        this.listRequests();
+      }, 1000)
     })
   }
 

@@ -97,4 +97,17 @@ export class CriarSolicitacaoComponent implements OnInit {
   saveRequestItem() {
     this.requestsService.create(this.requestsForm.value).subscribe()
   }
+
+  changeAction(event: any) {
+    if(event === 1) {
+      this.requestsForm.get('schoolUnit')?.disable();
+      this.requestsForm.patchValue({
+        schoolUnit: {
+          id: null
+        }
+      })
+    } else {
+      this.requestsForm.get('schoolUnit')?.enable();
+    }
+  }
 }

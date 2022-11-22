@@ -3,7 +3,7 @@ import {MatTable, MatTableDataSource} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { UnidadesDeMedidaAdicionarOuEditarComponent } from './unidades-de-medida-adicionar-ou-editar/unidades-de-medida-adicionar-ou-editar.component';
 import {ProdutosService} from "../../services/produtos.service";
-import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {MatPaginator} from "@angular/material/paginator";
 import {UnidadesDeMedidaModel} from "../../models/unidades-de-medida.model";
 import {ExcluirUnidadeDeMedidaComponent} from "./unidades-de-medida-excluir/unidades-de-medida-excluir.component";
 import {MatSort} from "@angular/material/sort";
@@ -28,10 +28,10 @@ export class UnidadesDeMedidaComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.listProducts();
+    this.listMeasurementUnities();
   }
 
-  listProducts(): void {
+  listMeasurementUnities(): void {
     this.produtosService.readMeasurementUnities().subscribe((data) => {
       this.unidadesDeMedida = data;
       this.dataSource = new MatTableDataSource(data) as unknown as MatTableDataSource<any>;
@@ -47,7 +47,9 @@ export class UnidadesDeMedidaComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.listProducts();
+      setTimeout(() => {
+        this.listMeasurementUnities();
+      }, 1000)
     });
   }
 
@@ -62,7 +64,9 @@ export class UnidadesDeMedidaComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.listProducts();
+      setTimeout(() => {
+        this.listMeasurementUnities();
+      }, 1000)
     });
   }
 

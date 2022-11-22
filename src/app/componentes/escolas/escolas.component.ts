@@ -5,7 +5,7 @@ import {EscolasModel, UnidadeEscolarModel} from 'src/app/models/escolas.model';
 import { EscolaAdicionarOuEditarComponent } from './escola-adicionar-ou-editar/escola-adicionar-ou-editar.component';
 import { EscolaExcluirComponent } from './escola-excluir/escola-excluir.component';
 import {EscolasService} from "../../services/escolas.service";
-import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {MatPaginator} from "@angular/material/paginator";
 import {UnidadesEscolaresService} from "../../services/unidadesEscolares.service";
 import {
   UnidadeEscolarAdicionarOuEditarComponent
@@ -72,7 +72,9 @@ export class EscolasComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(() => {
-      this.listSchools();
+      setTimeout(() => {
+        this.listSchools();
+      }, 1000)
     })
   }
 
@@ -87,7 +89,9 @@ export class EscolasComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(() => {
-      this.listSchools();
+      setTimeout(() => {
+        this.listSchools();
+      }, 1000)
     })
   }
 
@@ -98,7 +102,9 @@ export class EscolasComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(() => {
-      this.listSchoolsUnits();
+      setTimeout(() => {
+        this.listSchoolsUnits();
+      }, 1000)
     })
   }
 
@@ -109,7 +115,9 @@ export class EscolasComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(() => {
-      this.listSchoolsUnits();
+      setTimeout(() => {
+        this.listSchoolsUnits();
+      }, 1000)
     })
   }
 

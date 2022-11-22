@@ -1,4 +1,4 @@
-import { Component, OnInit,  ViewChild } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ProdutosModel } from 'src/app/models/produtos.model';
@@ -37,6 +37,7 @@ export class ProdutosComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private produtosService: ProdutosService,
+    private cdr: ChangeDetectorRef,
     ) { }
 
   ngOnInit(): void {
@@ -49,6 +50,7 @@ export class ProdutosComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data) as unknown as MatTableDataSource<any>;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.cdr.detectChanges();
     })
   }
 
@@ -59,7 +61,9 @@ export class ProdutosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.listProducts();
+      setTimeout(() => {
+        this.listProducts();
+      }, 1000)
     });
   }
 
@@ -70,7 +74,9 @@ export class ProdutosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.listProducts();
+      setTimeout(() => {
+        this.listProducts();
+      }, 1000)
     });
   }
 
@@ -81,7 +87,9 @@ export class ProdutosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.listProducts();
+      setTimeout(() => {
+        this.listProducts();
+      }, 1000)
     });
   }
 
