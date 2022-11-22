@@ -1,0 +1,50 @@
+
+<div class="dialog-header">
+  <h1 *ngIf="editMode" mat-dialog-title>Editar Usuário</h1>
+  <h1 *ngIf="!editMode" mat-dialog-title>Adicionar Usuário</h1>
+  <hr>
+</div>
+
+<form #form="ngForm">
+  <div mat-dialog-content>
+    <div class="inputs">
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>Nome do Usuário:</mat-label>
+        <input required type="text" matInput placeholder="Insira o nome do usuário" name="name" [(ngModel)]="data.name">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>Nivel</mat-label>
+        <mat-select required [(value)]="data.level">
+          <mat-option [value]="data.level == 'administrador'">
+            Administrador
+          </mat-option>
+
+          <mat-option [value]="data.level == 'usuario'">
+            usuario
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="inputs">
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>E-mail:</mat-label>
+        <input required type="email" matInput placeholder="exemplo: exemplo@gmail.com" name="email" [(ngModel)]="data.email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>Senha</mat-label>
+        <input required type="password" min="1" matInput placeholder="Insira uma senha" name="password" [(ngModel)]="data.password">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div  class="dialog-footer">
+    <hr>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-button [mat-dialog-close]="data" color="primary" (click)="createOrEditProduct(data)" [disabled]="form.invalid">
+      Adicionar
+    </button>
+  </div>
+</form>

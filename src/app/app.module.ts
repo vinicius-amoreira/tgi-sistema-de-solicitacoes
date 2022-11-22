@@ -55,6 +55,9 @@ import {
 } from "./componentes/unidades-de-medida/unidades-de-medida-excluir/unidades-de-medida-excluir.component";
 import {CustomPaginator} from "../helpers/customPaginatorConfiguration.helper";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { UsersComponent } from './componentes/users/users.component';
+import { UsuariosAdicionarOuEditarComponent } from './componentes/users/usuarios-adicionar-ou-editar/usuarios-adicionar-ou-editar.component';
+import { UsuariosExcluirComponent } from './componentes/users/usuarios-excluir/usuarios-excluir.component';
 
 
 @NgModule({
@@ -77,7 +80,10 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     UnidadesDeMedidaComponent,
     UnidadesDeMedidaAdicionarOuEditarComponent,
     ExcluirUnidadeDeMedidaComponent,
-    LoginComponent
+    LoginComponent,
+    UsersComponent,
+    UsuariosAdicionarOuEditarComponent,
+    UsuariosExcluirComponent
   ],
   imports: [
     HttpClientModule,

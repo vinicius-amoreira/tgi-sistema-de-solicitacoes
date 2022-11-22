@@ -9,6 +9,7 @@ import { MainComponent } from "./componentes/main/main.component";
 import { EscolasComponent } from "./componentes/escolas/escolas.component";
 import { UnidadesDeMedidaComponent } from "./componentes/unidades-de-medida/unidades-de-medida.component";
 import { LoginComponent } from './componentes/login/login.component';
+import { UsersComponent } from './componentes/users/users.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,14 @@ const routes: Routes = [
         component: UnidadesDeMedidaComponent,
         data: {
           token: 'token'
+        }
+      },
+      {
+        path: 'usuarios',
+        component: UsersComponent,
+        canActivate: [AuthGuard],
+        data: {
+         token: 'token'
         }
       },
     ]
